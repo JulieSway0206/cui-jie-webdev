@@ -6,4 +6,4 @@
 1. mongod
 1. node server.js
 1. browse to localhost:3000
-I am a master student.
+I am a master student
