@@ -6,7 +6,7 @@
 1. mongod
 1. node server.js
 1. browse to localhost:3000
-# Introduction to Myself
+# Introduction to Myself!!
 1. I am a graduate student at Northeastern University, majoring in Computer Science. I majored in electrical engineering before. I am interested in Artificial Intelligence and Natural Language Processing. I hope after this course, I can employ the knowledge of web development into AI and NLP to achieve more.
 # Purpose of Repository
 1. This repo is used for CS5610, my web development course. It includes six assignments and one project in the public folder.
