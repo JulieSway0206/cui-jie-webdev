@@ -47,3 +47,13 @@ body {
     border-bottom-left-radius: 10px;
 
 }
+.wd-profile{
+    position: absolute;
+    right: 15px;
+}
+.wd-ok{
+    position: absolute;
+    right: 15px;
+    padding: 15px;
+
+}
