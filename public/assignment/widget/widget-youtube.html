@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Heading Edit</title>
+    <title>Video Edit</title>
     <!--<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>-->
     <link href="../vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/style.css" rel="stylesheet"/>
@@ -32,32 +32,37 @@
     </div>
 </nav>
 <div class="container-fluid">
-
+  <div>
     <label for="name">Name</label>
     <input type="text"
            class="form-control"
            id="name"
-           placeholder="Name"
-           value="top heading">
+           placeholder="video name"
+           value="La La Land">
     <label for="text">Text</label>
     <input type="text"
            class="form-control"
            id="text"
            placeholder="Text"
-           value="US Senate Reaches Compromise">
-    <label for="size">Size</label>
-    <select id="size" class="form-control" >
-        <option>1 (X-Large)</option>
-        <option>2 (Larger)</option>
-        <option>3 (Large)</option>
-        <option>4 (Medium)</option>
-        <option>5 (Small)</option>
-        <option>6 (Smallest)</option>
+           value="Romantic Movie">
+    <label for="url">URL</label>
+    <input type="url"
+           class="form-control"
+           id="url"
+           placeholder="URL"
+           value="https://youtu.be/0pdqf4P9MB8">
+    <label for="width">Width</label>
+    <input type="text"
+           class="form-control"
+           id="width"
+           placeholder="Width"
+           value="100%">
+  </div>
+    <div>
+        <a class="btn btn-block btn-danger"
+           href="widget-list.html">Delete</a>
 
-    </select>
-       <div>
-        <a class="btn btn-block btn-danger" href="widget-list.html">Delete</a>
-        </div>
+    </div>
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
@@ -71,7 +76,6 @@
         </div>
     </div>
 </nav>
-
 
 </body>
 </html>
