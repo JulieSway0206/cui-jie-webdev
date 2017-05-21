@@ -47,15 +47,23 @@ body {
     border-bottom-left-radius: 10px;
 
 }
-.wd-profile{
-    position: absolute;
-    right: 15px;
-}
+
 .wd-ok{
     position: absolute;
     right: 15px;
     padding: 15px;
 
+}
+.wd-left{
+    position: absolute;
+    left: 5px;
+    padding: 15px;
+
+}
+.wd-list{
+    position: absolute;
+    left: 50px;
+    padding: 15px;
 }
 a.hover{
     text-decoration: none;
@@ -74,4 +82,30 @@ a.hover{
     left: 0;
     width: 100%;
     height: 100%;
+}
+.row.navbar-header > .col-xs-8{
+    padding-right: 0;
+}
+
+.navbar.navbar-default.navbar-fixed-top .navbar-header,
+.navbar.navbar-default.navbar-fixed-bottom .navbar-header,
+.row.navbar-text {
+    width: 100%;
+}
+
+.navbar-brand,
+.navbar-header.navbar-brand,
+.row a {
+    white-space: nowrap;
+}
+
+.row .container-fluid {
+    padding-right: 0;
+    padding-left: 0;
+    margin-right: 0;
+    margin-left: 0;
+}
+
+.wd-widget-toolbar{
+    z-index: 1;
 }
