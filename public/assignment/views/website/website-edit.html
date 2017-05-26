@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Website New</title>
+    <title>Website Edit</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
     <!--<link href="../vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">-->
-    <link href="../css/style.css" rel="stylesheet"/>
+    <link href="../../css/style.css" rel="stylesheet"/>
 </head>
 <body>
 
@@ -35,20 +35,18 @@
             </div>
 
             <div class="col-xs-8">
-                    <a class="navbar-brand" href="website-new.html">
-                        New Website
+                <a class="navbar-brand" href="website-edit.html">
+                    Edit Website
+                </a>
+                <p class="navbar-text pull-right">
+                    <a href="website-list.html" class="navbar-link">
+                        <span class="glyphicon glyphicon-ok"></span>
                     </a>
-                    <p class="navbar-text pull-right">
-                        <a href="website-list.html" class="navbar-link">
-                            <span class="glyphicon glyphicon-ok"></span>
-                        </a>
-                    </p>
+                </p>
             </div>
         </div>
     </div>
 </nav>
-
-
 <div class="container-fluid">
     <div class="row">
         <div class="col-xs-4 hidden-xs">
@@ -92,21 +90,24 @@
             <input type="text"
                    class="form-control"
                    id="name"
-                   placeholder="Name">
+                   placeholder="Name"
+                   value="Blogger">
             <label for="description">Description</label>
             <textarea id="description"
                       class="form-control"
                       rows="6"
-                      placeholder="Description"></textarea>
+                      placeholder="Description">Blogger is a blog-publishing services that allows multi-user blogs with time-stamped entries. It was developed by Pyra Labs, which was bought by Google in 2003. Generally, the blogs are hosted by Google at a subdomain of blogspot.com.Blog can also be hosted in the registered custom domain of the blogger(like www.example.com).</textarea>
+            <a class="btn btn-block btn-danger" href="website-list.html">Delete</a>
         </div>
     </div>
 </div>
+
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
         <div class="navbar-header">
             <p class="navbar-text pull-right">
-                <a href="../user/profile.html" class="navbar-link">
+                <a href="../user/templates/profile.view.client.html" class="navbar-link">
                     <span class="glyphicon glyphicon-user">
                     </span>
                 </a>
@@ -114,7 +115,6 @@
         </div>
     </div>
 </nav>
-
 
 </body>
 </html>

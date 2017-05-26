@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Video Edit</title>
+    <title>Image Edit</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
     <!--<link href="../vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">-->
-    <link href="../css/style.css" rel="stylesheet"/>
+    <link href="../../css/style.css" rel="stylesheet"/>
 </head>
 <body>
 
@@ -19,7 +19,7 @@
           </span>
                 </a>
             </p>
-            <a class="wd-list navbar-brand" href="widget-youtube.html">
+            <a class="wd-list navbar-brand" href="widget-image.html">
                 Widget Edit
             </a>
             <p class="navbar-text pull-right">
@@ -37,28 +37,31 @@
     <input type="text"
            class="form-control"
            id="name"
-           placeholder="video name"
-           value="La La Land">
+           placeholder="image name"
+           value="beautiful picture">
     <label for="text">Text</label>
     <input type="text"
            class="form-control"
            id="text"
            placeholder="Text"
-           value="Romantic Movie">
+           value="The amazing picture">
     <label for="url">URL</label>
     <input type="url"
            class="form-control"
            id="url"
            placeholder="URL"
-           value="https://youtu.be/0pdqf4P9MB8">
+           value="https://i.kinja-img.com/gawker-media/image/upload/s--7ynEcq_7--/c_scale,fl_progressive,q_80,w_800/lzhkwolbou0fazdepres.jpg">
     <label for="width">Width</label>
     <input type="text"
            class="form-control"
            id="width"
            placeholder="Width"
            value="100%">
+    <label for="file">Upload</label>
+    <input  id="file"  type="file" class="form-control">
   </div>
     <div>
+        <a class="btn btn-block btn-success">Upload Image</a>
         <a class="btn btn-block btn-danger"
            href="widget-list.html">Delete</a>
 
@@ -69,7 +72,7 @@
     <div class="container-fluid">
         <div class="navbar-header">
             <p class="navbar-text pull-right">
-                <a href="../user/profile.html" class="navbar-link">
+                <a href="../user/templates/profile.view.client.html" class="navbar-link">
                     <span class="glyphicon glyphicon-user">
                     </span>
                 </a>
