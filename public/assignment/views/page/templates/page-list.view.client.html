@@ -13,7 +13,7 @@
                 Pages
             </a>
             <p class="navbar-text pull-right">
-                <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/new'" class="navbar-link">
+                <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/new" class="navbar-link">
           <span class="wd-ok glyphicon glyphicon-plus">
           </span>
                 </a>
@@ -25,7 +25,7 @@
 <div class="container-fluid">
     <ul class="list-group">
         <li ng-repeat="page in model.pages" class="list-group-item">
-            <a href="../../widget/widget-list.html" class="hover">
+            <a href="../../widget/templates/widget-list.view.client.html" class="hover">
                 {{page.name}}
             </a>
             <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}">
@@ -35,16 +35,4 @@
     </ul>
 </div>
 
-<nav class="navbar navbar-default navbar-fixed-bottom">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <p class="navbar-text pull-right">
-                <a href="../../user/templates/profile.view.client.html" class="navbar-link">
-                    <span class="glyphicon glyphicon-user">
-                    </span>
-                </a>
-            </p>
-        </div>
-    </div>
-</nav>
-
+<div ng-include="'views/common/footer.view.client.html'"></div>
