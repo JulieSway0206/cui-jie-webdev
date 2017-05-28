@@ -1,35 +1,34 @@
 
-
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="row navbar-header">
 
             <div class="col-md-1 col-sm-3 col-xs-4">
-                <a class="navbar-brand" href="website-list.view.client.html">
+                <a class="navbar-brand" href="page-list.view.client.html">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
             </div>
 
             <div class="col-md-2 hidden-sm hidden-xs">
-                <a class="navbar-brand" href="website-list.view.client.html">
-                    Websites
+                <a class="navbar-brand" href="page-list.view.client.html">
+                    Pages
                 </a>
             </div>
 
             <div class="col-sm-1 hidden-xs">
                 <p class="navbar-text pull-right">
-                    <a href="website-new.html" class="navbar-link">
+                    <a href="page-new.view.client.html" class="navbar-link">
                         <span class="glyphicon glyphicon-plus"></span>
                     </a>
                 </p>
             </div>
 
             <div class="col-xs-8">
-                <a class="navbar-brand" href="website-edit.view.client.html">
-                    New Website
+                <a class="navbar-brand" href="page-new.view.client.html">
+                    New Page
                 </a>
                 <p class="navbar-text pull-right">
-                    <a href="website-list.view.client.html" class="navbar-link">
+                    <a href="page-list.view.client.html" class="navbar-link">
                         <span class="glyphicon glyphicon-ok"></span>
                     </a>
                 </p>
@@ -37,17 +36,17 @@
         </div>
     </div>
 </nav>
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-xs-4 hidden-xs">
             <ul class="list-group">
-                <li ng-repeat="website in model.websites" class="list-group-item">
-                    <a href="#!/user/{{model.userId}}/website/{{website._id}}/page">
-                        {{website.name}}
+                <li ng-repeat="page in model.pages" class="list-group-item">
+                    <a href="../../widget/widget-list.html" class="hover">
+                        {{page.name}}
                     </a>
-
-                    <a href="#!/user/{{model.userId}}/website/{{website._id}}">
-                                <span class="glyphicon glyphicon-cog pull-right"></span>
+                    <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}">
+                        <span class="glyphicon glyphicon-cog pull-right"></span>
                     </a>
                 </li>
             </ul>
@@ -57,22 +56,21 @@
             <input type="text"
                    class="form-control"
                    id="name"
-                   placeholder="Name"
-                   ng-model="website.name">
-            <label for="description">Description</label>
-            <textarea id="description"
-                      ng-model="website.description"
-                      class="form-control"
-                      rows="6"
-                      placeholder="Description"></textarea>
+                   placeholder="Page Name"
+                   ng-model="page.name">
+            <label for="title">Title</label>
+            <input id="title"
+                   type="text"
+                   class="form-control"
+                   placeholder="Page Title"
+                   ng-model="page.description">
             <a class="btn btn-block btn-success"
-               ng-click="model.createWebsite(website)">
+               ng-click="model.createPage(page)">
                 Create
             </a>
         </div>
     </div>
 </div>
-
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
@@ -86,4 +84,5 @@
         </div>
     </div>
 </nav>
+
 
