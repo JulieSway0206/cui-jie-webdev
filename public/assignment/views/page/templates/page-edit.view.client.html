@@ -64,6 +64,12 @@
                    class="form-control"
                    placeholder="Page Title"
                    ng-model="model.page.description">
+
+            <a class="btn btn-block btn-success"
+               ng-click="model.updatePage(model.pageId, model.page)">
+                Update
+            </a>
+
             <a class="btn btn-block btn-danger"
                ng-click="model.deletePage(model.pageId)">
                 Delete

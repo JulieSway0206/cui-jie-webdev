@@ -28,8 +28,9 @@
 
         function updateWidget (widgetId, widget) {
             for (var v in widgets) {
-                if (widgets[v]._id === widgetId)
+                if (widgets[v]._id === widgetId){
                     widgets[v] = widget;
+                }
             }
         }
 

@@ -14,6 +14,21 @@
 
               model.user = userService.findUserById(model.userId);
 
+              model.updateUser = updateUser;
+              model.deleteUser = deleteUser;
+
+
+
+          function updateUser (userId, user) {
+              userService.updateUser(userId, user);
+              model.message = "Updated!!";
+          }
+
+          function deleteUser (userId) {
+              userService.deleteUser(userId);
+              $location.url('/login');
+          }
+
           }
       
 })();

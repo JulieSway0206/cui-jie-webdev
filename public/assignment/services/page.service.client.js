@@ -13,6 +13,7 @@
         this.findPageById = findPageById;
         this.deletePage = deletePage;
         this.createPage = createPage;
+        this.updatePage = updatePage;
 
         var pages = [
             { "_id": "321", "name": "Post 1", "websiteId": "456", "description": "Lorem" },
@@ -21,6 +22,13 @@
         ];
 
 
+        function updatePage (pageId, page) {
+            for (var v in pages) {
+                if (pages[v]._id === pageId){
+                    pages[v] = page;
+                }
+            }
+        }
 
         function createPage(page){
             page._id = (new Date()).getTime() + "";
