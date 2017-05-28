@@ -25,7 +25,7 @@
 <div class="container-fluid">
     <ul class="list-group">
         <li ng-repeat="page in model.pages" class="list-group-item">
-            <a href="../../widget/templates/widget-list.view.client.html" class="hover">
+            <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}/widget" class="hover">
                 {{page.name}}
             </a>
             <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}">
