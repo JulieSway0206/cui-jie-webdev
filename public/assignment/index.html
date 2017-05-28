@@ -1,11 +1,24 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="WebAppMaker">
 <head>
+    <!--the first three need to be in this order-->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
     <script src="../vendor/angular/angular-route.min.js"></script>
-    <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/X.Y.Z/angular-route.js"></script>-->
     <script src="app.js"></script>
+    <script src="config.js"></script>
+
+    <!--user-->
     <script src="views/user/controllers/login.controller.view.js"></script>
+    <script src="views/user/controllers/profile.controller.view.js"></script>
+    <script src="views/user/controllers/register.controller.view.js"></script>
+    <script src="services/user.service.client.js"></script>
+
+    <!--website-->
+    <script src="views/website/controllers/website-list.controller.client.js"></script>
+    <script src="views/website/controllers/website-edit.controller.client.js"></script>
+    <script src="views/website/controllers/website-new.controller.client.js"></script>
+    <script src="services/website.service.client.js"></script>
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
