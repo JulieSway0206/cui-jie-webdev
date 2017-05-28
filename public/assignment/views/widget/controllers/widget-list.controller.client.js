@@ -12,7 +12,9 @@
         model.trust = trust;
         model.getYouTubeEmbedUrl = getYouTubeEmbedUrl;
         model.widgetUrl = widgetUrl;
-        model.pageId = $routeParams['pageId']
+        model.userId = $routeParams['userId'];
+        model.websiteId = $routeParams['websiteId'];
+        model.pageId = $routeParams['pageId'];
 
         function init() {
             model.widgets = widgetService.findAllWidgetsForPage(model.pageId);

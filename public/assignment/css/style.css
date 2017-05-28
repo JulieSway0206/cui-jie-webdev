@@ -69,6 +69,12 @@ body {
     left: 50px;
     padding: 15px;
 }
+
+.wd-list-1{
+    position: relative;
+    left: 50px;
+    padding: 15px;
+}
 a.hover{
     text-decoration: none;
 }

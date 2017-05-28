@@ -8,9 +8,10 @@
 
     function widgetService() {
         this.findAllWidgetsForPage = findAllWidgetsForPage;
-        // this.findwidgetById = findwidgetById;
-        // this.deletewidget = deletewidget;
-        // this.createwidget = createwidget;
+        this.findWidgetById = findWidgetById;
+        this.deleteWidget = deleteWidget;
+        this.createWidget = createWidget;
+        this.updateWidget = updateWidget;
 
         var widgets = [
             { "_id": "123", "widgetType": "HEADING", "pageId": "321", "size": 2, "text": "GIZMODO"},
@@ -25,28 +26,53 @@
         ];
 
 
-
-        // function createwidget(widget){
-        //     widget._id = (new Date()).getTime() + "";
-        //     widgets.push(widget);
-        // }
-        //
-        //
-        //
-        // function deletewidget(widgetId) {
-        //     var widget = findwidgetById(widgetId);
-        //     var index = widgets.indexOf(widget);
-        //     widgets.splice(index, 1);
-        // }
+        function updateWidget (widgetId, widget) {
+            for (var v in widgets) {
+                if (widgets[v]._id === widgetId)
+                    widgets[v] = widget;
+            }
+        }
 
 
+        function deleteWidget(widgetId) {
+            var widget = findWidgetById(widgetId);
+            var index = widgets.indexOf(widget);
+            widgets.splice(index, 1);
+        }
 
-        // function findwidgetById(widgetId) {
-        //     return widgets.find(function (widget) {
-        //         return widget._id === widgetId;
-        //     });
-        //
-        // }
+
+
+        function findWidgetById(widgetId) {
+            return widgets.find(function (widget) {
+                return widget._id === widgetId;
+            });
+
+        }
+
+
+
+        function createWidget(widgetType, pageId) {
+            switch (widgetType) {
+                case "HEADING":
+                    widget =  {'_id': '', 'name': '', 'widgetType': '', 'pageId': '', 'size': '', 'text': ''};
+                    break;
+                case "IMAGE":
+                    widget =  {'_id': '', 'name': '', 'widgetType': '', 'pageId': '', 'width': '', 'url': '', 'text': ''};
+                    break;
+                case "YOUTUBE":
+                    widget =  {'_id': '', 'name': '', 'widgetType': '', 'pageId': '', 'width': '', 'url': '', 'text': ''};
+                    break;
+                default:
+                    break;
+            }
+            widget._id = (new Date()).getTime() + "";
+            widget.widgetType = widgetType;
+            widget.pageId = pageId;
+            widgets.push(widget);
+            return widget._id;
+        }
+
+
 
         function findAllWidgetsForPage(pageId) {
             var results = [];
