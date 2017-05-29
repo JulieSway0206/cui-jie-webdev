@@ -40,7 +40,7 @@
             var index = users.indexOf(user);
             users.splice(index, 1);
         }
-        
+
 
         function createUser(user) {
             user._id = (new Date()).getTime() + "";
