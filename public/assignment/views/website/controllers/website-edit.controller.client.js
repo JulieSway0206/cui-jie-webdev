@@ -20,7 +20,8 @@
 
         }
         init();
-
+        model.preWebsites = angular.copy(model.websites);
+        model.preWebsite = angular.copy(model.website);
         function updateWebsite (websiteId, website) {
             websiteService.updateWebsite(websiteId, website);
             $location.url('/user/' + model.userId + '/website');

@@ -5,13 +5,15 @@
         <div class="row navbar-header">
 
             <div class="col-md-1 col-sm-3 col-xs-4">
-                <a class="navbar-brand" href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page">
+                <a class="navbar-brand"
+                   ng-click="model.updatePage(model.pageId, model.prePage)">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
             </div>
 
             <div class="col-md-2 hidden-sm hidden-xs">
-                <a class="navbar-brand" href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page">
+                <a class="navbar-brand"
+                   ng-click="model.updatePage(model.pageId, model.prePage)">
                     Pages
                 </a>
             </div>
@@ -29,7 +31,8 @@
                     Edit Page
                 </a>
                 <p class="navbar-text pull-right">
-                    <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page" class="navbar-link">
+                    <a  class="navbar-link"
+                        ng-click="model.updatePage(model.pageId, model.page)">
                         <span class="glyphicon glyphicon-ok"></span>
                     </a>
                 </p>
@@ -41,11 +44,12 @@
     <div class="row">
         <div class="col-xs-4 hidden-xs">
             <ul class="list-group">
-                <li ng-repeat="page in model.pages" class="list-group-item">
-                    <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}/widget" class="hover">
-                        {{page.name}}
+                <li ng-repeat="prePage in model.prePages" class="list-group-item">
+                    <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{prePage._id}}/widget"
+                       class="hover">
+                        {{prePage.name}}
                     </a>
-                    <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}">
+                    <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{prePage._id}}">
                         <span class="glyphicon glyphicon-cog pull-right"></span>
                     </a>
                 </li>
@@ -56,13 +60,13 @@
             <input type="text"
                    class="form-control"
                    id="name"
-                   placeholder="Page Name"
+                   placehpreer="Page Name"
                    ng-model="model.page.name">
             <label for="title">Title</label>
             <input id="title"
                    type="text"
                    class="form-control"
-                   placeholder="Page Title"
+                   placehpreer="Page Title"
                    ng-model="model.page.description">
 
             <a class="btn btn-block btn-success"

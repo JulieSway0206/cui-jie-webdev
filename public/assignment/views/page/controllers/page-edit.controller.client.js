@@ -25,6 +25,8 @@
 
         }
         init();
+        model.prePages = angular.copy(model.pages);
+        model.prePage = angular.copy(model.page);
 
         function deletePage(pageId) {
             pageService.deletePage(pageId);

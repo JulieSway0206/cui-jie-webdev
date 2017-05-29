@@ -4,7 +4,8 @@
     <div class="container-fluid">
         <div class="navbar-header">
             <p class="navbar-text pull-left">
-                <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget" class="navbar-link">
+                <a class="navbar-link"
+                   ng-click="model.updateWidget(model.widgetId, model.preWidget)">
           <span class="wd-left glyphicon glyphicon-menu-left">
           </span>
                 </a>
@@ -13,7 +14,8 @@
                 Widget Edit
             </a>
             <p class="navbar-text pull-right">
-                <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget" class="navbar-link">
+                <a class="navbar-link"
+                   ng-click="model.updateWidget(model.widgetId, model.widget)">
           <span class="wd-ok glyphicon glyphicon-ok">
           </span>
                 </a>

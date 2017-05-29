@@ -5,13 +5,15 @@
         <div class="row navbar-header">
 
             <div class="col-md-1 col-sm-3 col-xs-4">
-                <a class="navbar-brand" href="#!/user/{{model.userId}}/website">
+                <a class="navbar-brand"
+                   ng-click="model.updateWebsite(model.websiteId, model.preWebsite)">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
             </div>
 
             <div class="col-md-2 hidden-sm hidden-xs">
-                <a class="navbar-brand" href="#!/user/{{model.userId}}/website">
+                <a class="navbar-brand"
+                   ng-click="model.updateWebsite(model.websiteId, model.preWebsite)">
                     Websites
                 </a>
             </div>
@@ -29,7 +31,8 @@
                     Edit Website
                 </a>
                 <p class="navbar-text pull-right">
-                    <a href="#!/user/{{model.userId}}/website" class="navbar-link">
+                    <a ng-click="model.updateWebsite(model.websiteId, model.website)"
+                       class="navbar-link">
                         <span class="glyphicon glyphicon-ok"></span>
                     </a>
                 </p>
@@ -41,12 +44,12 @@
     <div class="row">
         <div class="col-xs-4 hidden-xs">
             <ul class="list-group">
-                <li ng-repeat="website in model.websites" class="list-group-item">
-                    <a href="#!/user/{{model.userId}}/website/{{website._id}}/page">
-                        {{website.name}}
+                <li ng-repeat="preWebsite in model.preWebsites" class="list-group-item">
+                    <a href="#!/user/{{model.userId}}/website/{{preWebsite._id}}/page">
+                        {{preWebsite.name}}
                     </a>
 
-                    <a href="#!/user/{{model.userId}}/website/{{website._id}}">
+                    <a href="#!/user/{{model.userId}}/website/{{preWebsite._id}}">
                                 <span class="glyphicon glyphicon-cog pull-right"></span>
                     </a>
                 </li>

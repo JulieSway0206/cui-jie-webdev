@@ -22,7 +22,8 @@
              model.widget = widgetService.findWidgetById(model.widgetId);
          }
          init();
-
+         model.preWidgets = angular.copy(model.widgets);
+         model.preWidget = angular.copy(model.widget);
 
          function deleteWidget(widgetId) {
              widgetService.deleteWidget(widgetId);
