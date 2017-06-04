@@ -18,8 +18,8 @@
               // var found = userService.findUserByCredentials(username, password);
               userService
                   .findUserByCredentials(username, password)
-                  .then(findUser, loginError);
-              function findUser(found) {
+                  .then(login, loginError);
+              function login(found) {
                   if (found) {
                       $location.url('/user/' + found._id);
                   } else {
@@ -28,7 +28,7 @@
               }
 
               function loginError() {
-                  model.error = "Sorry, not found. Please try again!";
+                  model.message = "Sorry, not found. Please try again!";
               }
 
           }
