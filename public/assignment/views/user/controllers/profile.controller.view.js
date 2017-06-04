@@ -12,7 +12,17 @@
 
               model.userId = $routeParams['userId'];
 
-              model.user = userService.findUserById(model.userId);
+              // model.user = userService.findUserById(model.userId);
+              userService.findUserById(model.userId)
+                         .then(renderUser, userError);
+
+              function renderUser(user) {
+              model.user = user;
+              }
+
+              function userError(error) {
+                  model.error = "User not found";
+              }
 
               model.updateUser = updateUser;
               model.deleteUser = deleteUser;

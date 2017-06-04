@@ -16,8 +16,12 @@
     </div>
 </nav>
 
+
     <div class="container-fluid">
         <h1>Profile</h1>
+        <div ng-show="model.error" class="alert alert-info">
+            {{model.error}}
+        </div>
         <div ng-show="model.message" class="alert alert-info">{{model.message}}</div>
         <form>
             <div class="form-group">

@@ -9,20 +9,29 @@
 
       function loginController($location, userService) {
 
-              var model = this;
+          var model = this;
 
-              model.login = login;
+          model.login = login;
 
 
-              function login(username, password) {
-                  var found = userService.findUserByCredentials(username, password);
-
-                  if(found !== null){
+          function login(username, password) {
+              // var found = userService.findUserByCredentials(username, password);
+              userService
+                  .findUserByCredentials(username, password)
+                  .then(findUser, loginError);
+              function findUser(found) {
+                  if (found) {
                       $location.url('/user/' + found._id);
                   } else {
                       model.message = "Sorry, " + username + " not found. Please try again!";
                   }
               }
+
+              function loginError() {
+                  model.error = "Sorry, not found. Please try again!";
+              }
+
           }
+      }
       
 })();
