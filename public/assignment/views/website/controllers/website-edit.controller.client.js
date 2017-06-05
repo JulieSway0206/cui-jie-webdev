@@ -15,21 +15,37 @@
         model.updateWebsite = updateWebsite;
 
         function init() {
-             model.websites = websiteService.findAllWebsitesForUser(model.userId);
-             model.website = websiteService.findWebsiteById(model.websiteId);
-
+              websiteService
+                            .findAllWebsitesForUser(model.userId)
+                            .then(function (websites) {
+                                model.websites = websites;
+                                model.preWebsites = angular.copy(model.websites);
+                                           });
+              websiteService
+                            .findWebsiteById(model.websiteId)
+                            .then(function (website) {
+                                model.website = website;
+                                model.preWebsite = angular.copy(model.website);
+                                           });
         }
+
         init();
-        model.preWebsites = angular.copy(model.websites);
-        model.preWebsite = angular.copy(model.website);
+
+
         function updateWebsite (websiteId, website) {
-            websiteService.updateWebsite(websiteId, website);
-            $location.url('/user/' + model.userId + '/website');
+            websiteService
+                          .updateWebsite(websiteId, website)
+                          .then(function () {
+                              $location.url('/user/' + model.userId + '/website');
+                          });
         }
 
         function deleteWebsite(websiteId) {
-            websiteService.deleteWebsite(websiteId);
-            $location.url('/user/'+model.userId+'/website');
+            websiteService
+                         .deleteWebsite(websiteId)
+                         .then(function () {
+                             $location.url('/user/'+model.userId+'/website');
+                         });
         }
         
 

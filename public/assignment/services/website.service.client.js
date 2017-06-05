@@ -26,37 +26,47 @@
         ];
 
         function updateWebsite (websiteId, website) {
-            for (var v in websites) {
-                if (websites[v]._id === websiteId){
-                    websites[v] = website;
-                }
-            }
+            var url = "/api/assignment/website/" + websiteId;
+            return $http.put(url, website)
+                        .then(function (response) {
+                            return response.data;
+                        });
         }
 
-        function createWebsite(website){
-            website._id = (new Date()).getTime() + "";
-            websites.push(website);
+        function createWebsite(website, userId){
+            var url = "/api/assignment/user/"+userId+"/website";
+            return $http
+                        .post(url, website)
+                        .then(function (response) {
+                            return response.data;
+                        });
         }
 
 
 
         function deleteWebsite(websiteId) {
-            var website = findWebsiteById(websiteId);
-            var index = websites.indexOf(website);
-            websites.splice(index, 1);
+            // var website = findWebsiteById(websiteId);
+            // var index = websites.indexOf(website);
+            // websites.splice(index, 1);
+            var url = "/api/assignment/website/" + websiteId;
+            return $http.delete(url)
+                        .then(function (response) {
+                            return response.data;
+                        });
         }
 
 
 
         function findWebsiteById(websiteId) {
-            return websites.find(function (website) {
-                return website._id === websiteId;
-            });
-
+            var url = " /api/assignment/website/" + websiteId;
+            return $http.get(url)
+                        .then(function (response) {
+                            return response.data;
+                        });
         }
 
         function findAllWebsitesForUser(userId) {
-            var url = "/api/user/"+userId+"/website";
+            var url = "/api/assignment/user/"+userId+"/website";
             return $http.get(url)
                 .then(function (response) {
                     return response.data;

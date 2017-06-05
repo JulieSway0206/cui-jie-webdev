@@ -25,9 +25,6 @@
 
 
         function deleteWidget(widgetId) {
-            // var widget = findWidgetById(widgetId);
-            // var index = widgets.indexOf(widget);
-            // widgets.splice(index, 1);
             var url = "/api/assignment/widget/"+widgetId;
             return $http
                         .delete(url)
