@@ -3,11 +3,6 @@
  */
 var app = require('../../express');
 
-var multer = require('multer'); // npm install multer --save
-var upload = multer({ dest: __dirname+'/../../public/assignment/ uploads' });
-
-app.post ("/api/upload", upload.single('myFile'), uploadImage);
-
 var widgets = [
     { "_id": "123", "widgetType": "HEADING", "pageId": "321", "size": 2, "text": "GIZMODO"},
     { "_id": "234", "widgetType": "HEADING", "pageId": "321", "size": 4, "text": "Lorem ipsum"},
@@ -19,6 +14,81 @@ var widgets = [
         "url": "https://youtu.be/AM2Ivdi9c4E" },
     { "_id": "789", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"}
 ];
+
+
+app.post('/api/assignment/page/:pageId/widget', createWidget);
+app.put('/api/assignment/widget/:widgetId', updateWidget);
+app.get('/api/assignment/widget/:widgetId', findWidgetById);
+app.get('/api/assignment/page/:pageId/widget', findAllWidgetsForPage);
+app.delete('/api/assignment/widget/:widgetId', deleteWidget);
+
+function deleteWidget(req, res) {
+    var widgetId = req.params.widgetId;
+
+    var widget = widgets.find(function (widget) {
+        return widget._id === widgetId;
+    });
+    var index = widgets.indexOf(widget);
+    widgets.splice(index, 1);
+    res.sendStatus(200);
+}
+
+
+
+
+function findAllWidgetsForPage(req, res) {
+
+    var pageId = req.params.pageId;
+
+    var results = [];
+    for(var v in widgets) {
+        if(widgets[v].pageId === pageId){
+            results.push(widgets[v]);
+        }
+    }
+    res.send(results);
+}
+
+
+
+function findWidgetById(req, res) {
+    var widgetId = req.params.widgetId;
+    var widget = widgets.find(function (widget) {
+        return widget._id === widgetId;
+    });
+    res.json(widget);
+}
+
+
+function updateWidget(req, res) {
+    var widget = req.body;
+    var widgetId = req.params.widgetId;
+    for (var v in widgets) {
+        if (widgets[v]._id === widgetId){
+            widgets[v] = widget;
+            res.sendStatus(200);
+            return;
+        }
+    }
+    res.sendStatus(404);
+}
+
+function createWidget(req, res) {
+    var widget = req.body;
+    widget._id = (new Date()).getTime() + "";
+    widgets.push(widget);
+    res.json(widget);
+}
+
+
+
+
+/////////upload image////
+
+var multer = require('multer'); // npm install multer --save
+var upload = multer({ dest: __dirname+'/../../public/assignment/uploads' });
+
+app.post ("/api/upload", upload.single('myFile'), uploadImage);
 
 function uploadImage(req, res) {
     var widgetId = req.body.widgetId;

@@ -19,19 +19,34 @@
          model.updateWidget = updateWidget;
 
          function init() {
-             model.widget = widgetService.findWidgetById(model.widgetId);
+             widgetService
+                 .findWidgetById(model.widgetId)
+                 .then(function (widget) {
+                     model.widget = widget;
+                     model.preWidget = angular.copy(model.widget);
+                 });
+             widgetService.findAllWidgetsForPage(model.pageId)
+                 .then(function (widgets) {
+                     model.widgets = widgets;
+                     model.preWidgets = angular.copy(model.widgets);
+                 });
          }
          init();
-         model.preWidgets = angular.copy(model.widgets);
-         model.preWidget = angular.copy(model.widget);
+
+
 
          function deleteWidget(widgetId) {
-             widgetService.deleteWidget(widgetId);
-             $location.url('/user/'+model.userId+'/website/'+model.websiteId+'/page/'+model.pageId+'/widget');
+             widgetService.deleteWidget(widgetId)
+                          .then(function () {
+                              $location.url('/user/'+model.userId+'/website/'+model.websiteId+'/page/'+model.pageId+'/widget');
+                          });
          }
          function updateWidget (widgetId, widget) {
-             widgetService.updateWidget(widgetId, widget);
-             $location.url('/user/'+model.userId+'/website/'+model.websiteId+'/page/'+model.pageId+ '/widget');
+             widgetService.updateWidget(widgetId, widget)
+                          .then(function () {
+                              $location.url('/user/'+model.userId+'/website/'+model.websiteId+'/page/'+model.pageId+ '/widget');
+                          });
+
          }
      }
  })();

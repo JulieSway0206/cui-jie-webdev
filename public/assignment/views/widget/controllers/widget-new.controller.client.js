@@ -18,8 +18,26 @@
 
 
          function createWidget (widgetType) {
-             widgetId = widgetService.createWidget(widgetType, model.pageId);
-             $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' + model.pageId + '/widget/' + widgetId);
+             switch (widgetType) {
+                 case "HEADING":
+                     widget =  {'_id': '', 'name': '', 'widgetType': '', 'pageId': '', 'size': '', 'text': ''};
+                     break;
+                 case "IMAGE":
+                     widget =  {'_id': '', 'name': '', 'widgetType': '', 'pageId': '', 'width': '', 'url': '', 'text': ''};
+                     break;
+                 case "YOUTUBE":
+                     widget =  {'_id': '', 'name': '', 'widgetType': '', 'pageId': '', 'width': '', 'url': '', 'text': ''};
+                     break;
+                 default:
+                     break;
+             }
+             widget.widgetType = widgetType;
+             widget.pageId = model.pageId;
+             widgetService
+                 .createWidget(widget, model.pageId)
+                 .then(function (widget) {
+                     $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' + model.pageId + '/widget/' + widget._id);
+                 });
          }
 
      }

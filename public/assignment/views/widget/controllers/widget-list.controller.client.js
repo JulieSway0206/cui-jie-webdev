@@ -17,7 +17,10 @@
         model.pageId = $routeParams['pageId'];
 
         function init() {
-            model.widgets = widgetService.findAllWidgetsForPage(model.pageId);
+            widgetService.findAllWidgetsForPage(model.pageId)
+                         .then(function (widgets) {
+                             model.widgets = widgets;
+                         });
         }
         init();
 
