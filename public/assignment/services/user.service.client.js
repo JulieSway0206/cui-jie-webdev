@@ -8,12 +8,6 @@
 
     function userService($http) {
 
-        var users = [
-            {_id: "123", username: "alice",    password: "alice",    firstName: "Alice",  lastName: "Wonder" , email: "alice@gmail.com"},
-            {_id: "234", username: "bob",      password: "bob",      firstName: "Bob",    lastName: "Marley", email: "bob@gmail.com"},
-            {_id: "345", username: "charly",   password: "charly",   firstName: "Charly", lastName: "Garcia", email: "charly@gmail.com"},
-            {_id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose",   lastName: "Annunzi",email: "jannunzi@gmail.com"}
-        ];
 
     // api is an object with attribute findUserById, the value of which is findUserById that
     //     bind with the findUserById function below.
@@ -28,35 +22,31 @@
         return api;
 
         function updateUser (userId, user) {
-            for (var v in users) {
-                if (users[v]._id === userId){
-                    users[v] = user;
-                }
-            }
+            var url = "/api/assignment/user/"+userId;
+            return $http.put(url, user)
+                .then(function (response) {
+                    return response.data;
+                });
         }
 
         function deleteUser (userId) {
-            var user = findUserById(userId);
-            var index = users.indexOf(user);
-            users.splice(index, 1);
+            var url = "/api/assignment/user/"+userId;
+            return $http.delete(url)
+                .then(function (response) {
+                    return response.data;
+                });
         }
 
 
         function createUser(user) {
-            user._id = (new Date()).getTime() + "";
-            user.created = new Date();
-            users.push(user);
-            return user
+            var url = "/api/assignment/user";
+            return $http.post(url, user)
+                .then(function (response) {
+                    return response.data;
+                });
         }
 
         function findUserByUsername(username) {
-            // var user = users.find(function (user) {
-            //     return user.username === username;
-            // });
-            // if(typeof user === 'undefined'){
-            //     return null;
-            // }
-            // return user;
             var url = "/api/assignment/user?username="+username;
             return $http.get(url)
                 .then(function (response) {

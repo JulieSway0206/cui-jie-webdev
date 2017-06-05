@@ -7,6 +7,44 @@ var users = [
 ];
 app.get('/api/assignment/user/:userId', findUserById);
 app.get('/api/assignment/user', findAllUsers);
+app.post('/api/assignment/user',createUser);
+app.put('/api/assignment/user/:userId', updateUser);
+app.delete('/api/assignment/user/:userId', deleteUser);
+
+function deleteUser(req, res) {
+    var userId = req.params.userId;
+    var user = users.find(function (user) {
+        return user._id === userId;
+    });
+    var index = users.indexOf(user);
+    users.splice(index, 1);
+    res.sendStatus(200);
+    return;
+}
+
+function updateUser(req, res) {
+    var user = req.body;
+    var userId = req.params.userId;
+    for (var v in users) {
+        if (users[v]._id === userId){
+            users[v] = user;
+            res.sendStatus(200);
+            return;
+        }
+    }
+    res.sendStatus(404);
+}
+
+function createUser(req, res) {
+    var user = req.body;
+    user._id = (new Date()).getTime() + "";
+    user.created = new Date();
+    users.push(user);
+    res.json(user);
+
+}
+
+
 
 function findUserById(req, res) {
     var userId = req.params['userId'];

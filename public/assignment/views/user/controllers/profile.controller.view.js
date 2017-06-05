@@ -11,6 +11,9 @@
               var model = this;
 
               model.userId = $routeParams['userId'];
+              model.updateUser = updateUser;
+              modeldeleteUser = deleteUser;
+
 
               // model.user = userService.findUserById(model.userId);
               userService.findUserById(model.userId)
@@ -30,13 +33,19 @@
 
 
           function updateUser (userId, user) {
-              userService.updateUser(userId, user);
-              model.message = "Updated!!";
+              userService.updateUser(userId, user)
+                         .then(function () {
+                             model.message = "User update was successful!!";
+                         });
           }
 
           function deleteUser (userId) {
-              userService.deleteUser(userId);
-              $location.url('/login');
+              userService.deleteUser(userId)
+                         .then(function () {
+                             $location.url('/login');
+                         }, function () {
+                             model.error = "Unable to delete you!";
+                         });
           }
 
           }

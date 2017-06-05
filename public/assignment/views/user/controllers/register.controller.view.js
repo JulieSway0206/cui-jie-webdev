@@ -36,10 +36,12 @@
                                          username: username,
                                          password: password
                                      };
-                                     newUser = userService.createUser(newUser);
-                                     $location.url('/user/' + newUser._id);
-                                 }
-                             );
+                                     return userService
+                                         .createUser(newUser);
+                                 })
+                               .then(function (user) {
+                                     $location.url('/user/' + user._id);
+                        });
              }
           }
       
