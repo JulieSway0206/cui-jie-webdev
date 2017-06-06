@@ -69,6 +69,8 @@ function findAllWebsitesForUser(req, res) {
 
     for(var v in websites) {
         if(websites[v].developerId === userId){
+            websites[v].created = new Date();
+            websites[v].accessed = new Date();
             results.push(websites[v]);
         }
     }
