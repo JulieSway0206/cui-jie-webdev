@@ -6,12 +6,21 @@
         .module('WebAppMaker')
         .service('widgetService', widgetService);
 
-    function widgetService($http) {
+    function widgetService($http, $routeParams) {
         this.findAllWidgetsForPage = findAllWidgetsForPage;
         this.findWidgetById = findWidgetById;
         this.deleteWidget = deleteWidget;
         this.createWidget = createWidget;
         this.updateWidget = updateWidget;
+        this.sortWidget = sortWidget;
+
+
+
+        function sortWidget(initial, final) {
+            var url = "/page/"+ $routeParams.pageId + "/widget?initial=" + initial + "&final=" + final;
+            $http.put(url);
+        }
+
 
 
         function updateWidget (widgetId, widget) {

@@ -17,11 +17,6 @@
 
 
         function updatePage (pageId, page) {
-            // for (var v in pages) {
-            //     if (pages[v]._id === pageId){
-            //         pages[v] = page;
-            //     }
-            // }
             var url = "/api/assignment/page/"+ pageId;
             return $http
                         .put(url, page)
@@ -31,8 +26,6 @@
         }
 
         function createPage(page){
-            // page._id = (new Date()).getTime() + "";
-            // pages.push(page);
             var url = "/api/assignment/website/" + page.websiteId + "/page";
             return $http
                         .post(url, page)
@@ -44,9 +37,6 @@
 
 
         function deletePage(pageId) {
-            // var page = findPageById(pageId);
-            // var index = pages.indexOf(page);
-            // pages.splice(index, 1);
             var url = "/api/assignment/page/"+ pageId;
             return $http
                         .delete(url)
@@ -58,9 +48,6 @@
 
 
         function findPageById(pageId) {
-            // return pages.find(function (page) {
-            //     return page._id === pageId;
-            // });
            var url = "/api/assignment/page/"+ pageId;
            return $http
                        .get(url)

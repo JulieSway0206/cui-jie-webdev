@@ -21,6 +21,29 @@ app.put('/api/assignment/widget/:widgetId', updateWidget);
 app.get('/api/assignment/widget/:widgetId', findWidgetById);
 app.get('/api/assignment/page/:pageId/widget', findAllWidgetsForPage);
 app.delete('/api/assignment/widget/:widgetId', deleteWidget);
+app.put('/page/:pageId/widget', sortWidget);
+
+
+
+
+function sortWidget(req, res) {
+    var initial = req.query.initial;
+    var final = req.query.final;
+    var widgetContainer=[];
+    var pageId = req.params.pageId;
+    var length = widgets.length;
+    for (var i =  length - 1; i >= 0; i--){
+        if (widgets[i].pageId === pageId){
+            widgetContainer.unshift(widgets[i]);
+            widgets.splice(i, 1);
+        }
+    }
+    var widget = widgetContainer[initial];
+    widgetContainer.splice(initial, 1);
+    widgetContainer.splice(final, 0, widget);
+    widgets = widgets.concat(widgetContainer);
+    res.sendStatus(200);
+}
 
 function deleteWidget(req, res) {
     var widgetId = req.params.widgetId;

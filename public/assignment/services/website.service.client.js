@@ -36,9 +36,6 @@
 
 
         function deleteWebsite(websiteId) {
-            // var website = findWebsiteById(websiteId);
-            // var index = websites.indexOf(website);
-            // websites.splice(index, 1);
             var url = "/api/assignment/website/" + websiteId;
             return $http.delete(url)
                         .then(function (response) {
