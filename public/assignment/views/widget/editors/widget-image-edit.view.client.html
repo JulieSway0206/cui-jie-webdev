@@ -1,5 +1,5 @@
 
-  <div>
+
     <label for="name">Name</label>
     <input type="text"
            class="form-control"
@@ -26,6 +26,7 @@
            ng-model="model.widget.width">
 
 
+
     <label>Upload local photo</label>
     <form action="/api/upload"   method="post" enctype="multipart/form-data">
       <input  name="myFile"    type="file" class="form-control"/>
@@ -37,5 +38,14 @@
       <button type="submit"    class="btn btn-block btn-primary">Upload Image</button>
     </form>
   <br>
+
+
+
+    <label>Photos from Flickr</label>
+    <a class="btn btn-info btn-block" href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{model.widgetId}}/search">
+      Search
+    </a>
+
+    <br>
 
 
