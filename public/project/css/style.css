@@ -1,0 +1,47 @@
+* {
+    font-size:20px;
+}
+
+.home{
+    background-image: linear-gradient(rgba(0,0,0,0),rgba(0,0,0,0.7)),url(../image/bookhome.jpg);
+    background-size: cover;
+    height: 100vh;
+    background-position: center;
+}
+
+.home > h3{
+    color: white;
+}
+div #title > h3 a{
+    color: #c9302c;
+}
+body{
+    padding-top: 51px;
+}
+
+div.row{
+    margin-left: 20px;
+    margin-right: 50px;
+    margin-top: 10px;
+    padding-right: 10px;
+}
+select{
+    width:100px;
+}
+div #content{
+    background-color: #eeeeee;
+    margin-left: 10px;
+    margin-right: 50px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    margin-top: 20px;
+}
+div #button .btn{
+    border-radius: 200px;
+}
+
+div #outerlink .btn{
+    margin-top: 100px;
+    background-color: #eb9316;
+    width: 50%;
+}
