@@ -9,9 +9,14 @@
       function configuration($routeProvider) {
              $routeProvider
                  .when('/', {
-                       templateUrl: 'views/home/templates/home.html',
+                       templateUrl: 'views/home/templates/operationhome.html',
                        controller: 'homeController',
                        controllerAs: 'model'
+                 })
+                 .when('/operation', {
+                     templateUrl: 'views/home/templates/operationhome.html',
+                     controller: 'homeController',
+                     controllerAs: 'model'
                  })
                  .when('/search/:text', {
                      templateUrl: 'views/home/templates/search.view.client.html',
