@@ -2,6 +2,9 @@
  * Created by SeedofWind on 6/3/17.
  */
 var app = require('../express');
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/webdev');
+mongoose.Promise = require('q').Promise;
 
 
 
