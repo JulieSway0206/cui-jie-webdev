@@ -47,12 +47,6 @@ function sortWidget(req, res) {
 function deleteWidget(req, res) {
     var widgetId = req.params.widgetId;
 
-    // var widget = widgets.find(function (widget) {
-    //     return widget._id === widgetId;
-    // });
-    // var index = widgets.indexOf(widget);
-    // widgets.splice(index, 1);
-    // res.sendStatus(200);
     widgetModel
         .deleteWidget(widgetId)
         .then(function (status) {
