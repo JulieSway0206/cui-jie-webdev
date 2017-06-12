@@ -37,6 +37,15 @@
         <div ng-switch-when="YOUTUBE">
             <div ng-include="'views/widget/editors/widget-youtube-edit.view.client.html'"></div>
         </div>
+
+        <div ng-switch-when="TEXT">
+            <div ng-include="'views/widget/editors/widget-text-edit.view.client.html'"></div>
+        </div>
+
+        <div ng-switch-when="HTML">
+            <div ng-include="'views/widget/editors/widget-html-edit.view.client.html'"></div>
+        </div>
+
     </div>
     <div>
         <a class="btn btn-block btn-success"

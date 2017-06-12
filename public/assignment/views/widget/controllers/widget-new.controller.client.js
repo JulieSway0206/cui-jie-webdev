@@ -20,13 +20,19 @@
          function createWidget (widgetType) {
              switch (widgetType) {
                  case "HEADING":
-                     widget =  {'name': '', 'type': '', '_page': '', 'size': '', 'text': ''};
+                     widget =  {'name': '', 'type': '', '_page': '', 'size': '', 'text': '', 'order': 1000};
                      break;
                  case "IMAGE":
-                     widget =  {'name': '', 'type': '', '_page': '', 'width': '', 'url': '', 'text': ''};
+                     widget =  {'name': '', 'type': '', '_page': '', 'width': '', 'url': '', 'text': '', 'order': 1000};
                      break;
                  case "YOUTUBE":
-                     widget =  {'name': '', 'type': '', '_page': '', 'width': '', 'url': '', 'text': ''};
+                     widget =  {'name': '', 'type': '', '_page': '', 'width': '', 'url': '', 'text': '', 'order': 1000};
+                     break;
+                 case "TEXT":
+                     widget =  {'name': '', 'type': '', '_page': '', 'rows': '', 'placeholder': '', 'formatted': '', 'order': 1000};
+                     break;
+                 case "HTML":
+                     widget =  {'name': '', 'type': '', '_page': '', 'text': '', 'order': 1000};
                      break;
                  default:
                      break;

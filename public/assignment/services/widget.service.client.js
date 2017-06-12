@@ -16,8 +16,8 @@
 
 
 
-        function sortWidget(initial, final) {
-            var url = "/page/"+ $routeParams.pageId + "/widget?initial=" + initial + "&final=" + final;
+        function sortWidget(start, end) {
+            var url = "/page/"+ $routeParams.pageId + "/widget?start=" + start + "&end=" + end;
             $http.put(url);
         }
 
