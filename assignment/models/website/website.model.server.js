@@ -12,10 +12,36 @@ websiteModel.findAllWebsitesForUser = findAllWebsitesForUser;
 websiteModel.deleteWebsiteFromUser = deleteWebsiteFromUser;
 websiteModel.findWebsiteById = findWebsiteById;
 websiteModel.updateWebsite = updateWebsite;
+websiteModel.addPage = addPage;
+websiteModel.deletePage = deletePage;
 
 
 
 module.exports = websiteModel;
+
+
+
+
+function deletePage(pageId) {
+    return websiteModel
+        .findOne({pages: pageId})
+        .then(function (website) {
+            var index = website.pages.indexOf(pageId);
+            website.pages.splice(index, 1);
+            return website.save();
+        });
+}
+
+
+
+function addPage(websiteId, pageId) {
+    return websiteModel
+        .findWebsiteById(websiteId)
+        .then(function (website) {
+            website.pages.push(pageId);
+            return website.save();
+        });
+}
 
 
 function updateWebsite(websiteId, newWebsite) {
