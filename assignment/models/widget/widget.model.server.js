@@ -14,9 +14,39 @@ widgetModel.findWidgetById = findWidgetById;
 widgetModel.findAllWidgetsForPage = findAllWidgetsForPage;
 widgetModel.updateWidget = updateWidget;
 widgetModel.deleteWidget = deleteWidget;
-
+widgetModel.sortWidget = sortWidget;
 
 module.exports = widgetModel;
+
+
+
+//
+function sortWidget(pageId, start, end) {
+      return widgetModel
+               .find({_page: pageId}, function (err, docs) {
+             widgets = docs.map(function (d) { return d.toObject() });
+
+
+    var widget = widgets[start];
+    widgets.splice(start, 1);
+    widgets.splice(end, 0, widget);
+
+
+    for(var i = 0; i < widgets.length; i++){
+        widgets[i].order = i;
+    }
+    return widgetModel
+        .remove({_page: pageId})
+        .then(function (staus) {
+            return widgetModel
+                       .create(widgets)
+                       .then(function (widgets) {
+                           return widgets;
+                       });
+        })})
+          .sort({'order': 1})
+          .exec();
+}
 
 
 
