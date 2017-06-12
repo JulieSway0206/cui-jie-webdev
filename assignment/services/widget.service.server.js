@@ -5,15 +5,6 @@ var app = require('../../express');
 
 var widgetModel = require('../models/widget/widget.model.server');
 
-var widgets = [
-    {"_id": "123", "name": "heading1", "widgetType": "HEADING", "pageId": "321", "size": 2, "text": "GIZMODO"},
-    {"_id": "234", "name": "heading2", "widgetType": "HEADING", "pageId": "321", "size": 4, "text": "Lorem ipsum"},
-    {"_id": "345", "name": "image1", "widgetType": "IMAGE", "pageId": "321", "width": "100%", "url": "http://lorempixel.com/400/200/", "text": "Lorem ipsum"},
-    {"_id": "456", "name": "html1", "widgetType": "HTML", "pageId": "321", "text": "<p>American Airlines Group’s total revenue passenger miles (RPMs) were a record 18.6 billion, up 3.1 percent versus April 2016. Total capacity was 22.6 billion available seat miles (ASMs), up 0.8 percent versus April 2016. Total passenger load factor was 82.2 percent, up 1.8 percentage points versus April 2016.</p>"},
-    {"_id": "567", "name": "heading3", "widgetType": "HEADING", "pageId": "321", "size": 4, "text": "Lorem ipsum"},
-    {"_id": "678", "name": "youtube1", "widgetType": "YOUTUBE", "pageId": "321", "width": "100%", "url": "https://youtu.be/AM2Ivdi9c4E", "text": "Lorem ipsum"},
-    {"_id": "789", "name": "html2", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"}
-];
 
 app.post('/api/assignment/page/:pageId/widget', createWidget);
 app.put('/api/assignment/widget/:widgetId', updateWidget);
@@ -25,24 +16,6 @@ app.put('/page/:pageId/widget', sortWidget);
 
 
 
-// function sortWidget(req, res) {
-//     var initial = req.query.initial;
-//     var final = req.query.final;
-//     var widgetContainer=[];
-//     var pageId = req.params.pageId;
-//     var length = widgets.length;
-//     for (var i =  length - 1; i >= 0; i--){
-//         if (widgets[i].pageId === pageId){
-//             widgetContainer.unshift(widgets[i]);
-//             widgets.splice(i, 1);
-//         }
-//     }
-//     var widget = widgetContainer[initial];
-//     widgetContainer.splice(initial, 1);
-//     widgetContainer.splice(final, 0, widget);
-//     widgets = widgets.concat(widgetContainer);
-//     res.sendStatus(200);
-// }
 
 
 function sortWidget(req, res) {

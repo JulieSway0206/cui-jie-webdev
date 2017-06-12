@@ -20,34 +20,60 @@ module.exports = widgetModel;
 
 
 
+
+// function sortWidget(pageId, start, end) {
+//       return widgetModel
+//                .find({_page: pageId}, function (err, docs) {
+//              widgets = docs.map(function (d) { return d.toObject() });
 //
+//
+//     var widget = widgets[start];
+//     widgets.splice(start, 1);
+//     widgets.splice(end, 0, widget);
+//
+//
+//     for(var i = 0; i < widgets.length; i++){
+//         widgets[i].order = i;
+//     }
+//     return widgetModel
+//         .remove({_page: pageId})
+//         .then(function (staus) {
+//             return widgetModel
+//                        .create(widgets)
+//                        .then(function (widgets) {
+//                            return widgets;
+//                        });
+//         })})
+//           .sort({'order': 1})
+//           .exec();
+// }
 function sortWidget(pageId, start, end) {
-      return widgetModel
-               .find({_page: pageId}, function (err, docs) {
-             widgets = docs.map(function (d) { return d.toObject() });
-
-
-    var widget = widgets[start];
-    widgets.splice(start, 1);
-    widgets.splice(end, 0, widget);
-
-
-    for(var i = 0; i < widgets.length; i++){
-        widgets[i].order = i;
-    }
+    // 1. find current ORDERED list of widgets on this page.
     return widgetModel
-        .remove({_page: pageId})
-        .then(function (staus) {
-            return widgetModel
-                       .create(widgets)
-                       .then(function (widgets) {
-                           return widgets;
-                       });
-        })})
-          .sort({'order': 1})
-          .exec();
-}
+        .find({_page: pageId}, function (err, docs) {
+            // 2. fetch the data as widgets
+            widgets = docs.map(function (d) { return d.toObject() });
 
+            // 3. delete the widget at start point and insert at end point
+            var widget = widgets[start];
+            widgets.splice(start, 1);
+            widgets.splice(end, 0, widget);
+
+            // 4. update the "order" attribute
+            for (var w in widgets) {
+                widgets[w].order = w;
+            }
+
+            // 5. remove the widgets in db
+            return widgetModel.remove({_page: pageId}, function(err, docs) {
+                // 6. recover the widgets with the new order in db
+                return widgetModel.create(widgets, function (err, docs) { return docs; });
+            });
+        })
+        .sort('order')
+        .exec(function(err, docs) { return docs; });
+
+}
 
 
 
