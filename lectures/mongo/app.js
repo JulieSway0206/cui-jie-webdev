@@ -4,7 +4,11 @@
 
 // load mongoose library
 var mongoose = require('mongoose');
+mongoose.Promise = require('q').Promise;
+
 var connectionString = 'mongodb://localhost/webdev'; // for local
+
+
 if(process.env.MLAB_USERNAME_WEBDEV) { // check if running remotely
     var username = process.env.MLAB_USERNAME_WEBDEV; // get from environment
     var password = process.env.MLAB_PASSWORD_WEBDEV;
@@ -13,7 +17,16 @@ if(process.env.MLAB_USERNAME_WEBDEV) { // check if running remotely
 }
 
 mongoose.connect(connectionString);
-mongoose.Promise = require('q').Promise;
+
+
+
+require('./services/user.service.server');
+require('./services/website.service.server');
+require('./services/page.service.server');
+require('./services/widget.service.server');
+
+
+
 
 var blogPostSchema = mongoose.Schema({
     title: String,
