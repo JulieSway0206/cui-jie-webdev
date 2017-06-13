@@ -73,7 +73,7 @@ function updateWidget(widgetId, newWidget) {
 function findAllWidgetsForPage(pageId) {
     return widgetModel
         .find({_page: pageId})
-        .sort({'order': -1})
+        .sort('order')
         .populate('_page')
         .exec();
 }
