@@ -31,8 +31,8 @@ function sortWidget(pageId, start, end) {
             widgets.splice(end, 0, widget);
 
 
-            for (var w in widgets) {
-                widgets[w].order = w;
+            for (var i=0; i<widgets.length;i++) {
+                widgets[i].order = i;
             }
 
             return widgetModel.remove({_page: pageId}, function(err, docs) {
@@ -40,7 +40,7 @@ function sortWidget(pageId, start, end) {
                 return widgetModel.create(widgets, function (err, docs) { return docs; });
             });
         })
-        .sort('order')
+        .sort({'order': 1})
         .exec(function(err, docs) { return docs; });
 
 }
