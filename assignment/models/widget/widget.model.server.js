@@ -24,26 +24,24 @@ module.exports = widgetModel;
 function sortWidget(pageId, start, end) {
       return widgetModel
                .find({_page: pageId}, function (err, docs) {
-             widgets = docs.map(function (d) { return d.toObject() });
+                    widgets = docs.map(function (d) { return d.toObject() });
 
 
-    var widget = widgets[start];
-    widgets.splice(start, 1);
-    widgets.splice(end, 0, widget);
+              var widget = widgets[start];
+              widgets.splice(start, 1);
+              widgets.splice(end, 0, widget);
 
 
-    for(var i = 0; i < widgets.length; i++){
-        widgets[i].order = i;
-    }
-    return widgetModel
-        .remove({_page: pageId})
-        .then(function (staus) {
-            return widgetModel
-                       .create(widgets)
-                       .then(function (widgets) {
-                           return widgets;
-                       });
-        })})
+              for(var i = 0; i < widgets.length; i++){
+                      widgets[i].order = i;
+              }
+              return widgetModel
+                .remove({_page: pageId}, function (err, docs) {
+                    return widgetModel.create(widgets, function (err, docs) {
+                        return docs;});
+                });
+                   })
+
           .sort({'order': 1})
           .exec();
 }
@@ -73,7 +71,7 @@ function updateWidget(widgetId, newWidget) {
 function findAllWidgetsForPage(pageId) {
     return widgetModel
         .find({_page: pageId})
-        .sort({'order': -1})
+        .sort({'order': 1})
         .populate('_page')
         .exec();
 }
