@@ -32,8 +32,8 @@ function sortWidget(pageId, start, end) {
               widgets.splice(end, 0, widget);
 
 
-              for(var i = 0; i < widgets.length; i++){
-                      widgets[i].order = i;
+              for(var w in widgets){
+                      widgets[w].order = w;
               }
               return widgetModel
                 .remove({_page: pageId}, function (err, docs) {
