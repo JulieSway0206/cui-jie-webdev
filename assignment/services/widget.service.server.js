@@ -112,11 +112,19 @@ function uploadImage(req, res) {
     var size = myFile.size;
     var mimetype = myFile.mimetype;
 
-    var widget = widgets.find(function (widget) {
-        return widget._id === widgetId;
-    });
 
-    widget.url = '/assignment/uploads/' + filename;
-    var callbackUrl = "/assignment/index.html#!/user/" + userId + "/website/"+ websiteId + "/page/" + pageId + "/widget/" + widgetId;
-    res.redirect(callbackUrl);
+    widgetModel
+        .findWidgetById(widgetId)
+        .then(function (widget){
+            widget.url = '/assignment/uploads/' + filename;
+
+            widgetModel
+                .updateWidget(widgetId, widget)
+                .then(function () {
+                    var callbackUrl   = "/assignment/index.html#!/user/" + userId + "/website/"+ websiteId + "/page/" + pageId + "/widget/" + widgetId;
+                    res.redirect(callbackUrl);
+                }, function (err) {
+                    res.send(err);
+                });
+        });
 }
