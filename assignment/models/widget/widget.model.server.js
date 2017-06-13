@@ -100,9 +100,8 @@ function updateWidget(widgetId, newWidget) {
 function findAllWidgetsForPage(pageId) {
     return widgetModel
         .find({_page: pageId})
-        .sort('order')
         .populate('_page')
-        .exec(function(err, docs) { return docs; });
+        .exec();
 }
 
 
