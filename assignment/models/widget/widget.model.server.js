@@ -22,30 +22,28 @@ module.exports = widgetModel;
 
 
 function sortWidget(pageId, start, end) {
-      return widgetModel
-               .find({_page: pageId}, function (err, docs) {
-                    widgets = docs.map(function (d) { return d.toObject() });
+    return widgetModel
+        .find({_page: pageId}, function (err, docs) {
+            widgets = docs.map(function (d) { return d.toObject() });
+
+            var widget = widgets[start];
+            widgets.splice(start, 1);
+            widgets.splice(end, 0, widget);
 
 
-              var widget = widgets[start];
-              widgets.splice(start, 1);
-              widgets.splice(end, 0, widget);
+            for (var w in widgets) {
+                widgets[w].order = w;
+            }
 
+            return widgetModel.remove({_page: pageId}, function(err, docs) {
 
-              for(var w in widgets){
-                      widgets[w].order = w;
-              }
-              return widgetModel
-                .remove({_page: pageId}, function (err, docs) {
-                    return widgetModel.create(widgets, function (err, docs) {
-                        return docs;});
-                });
-                   })
+                return widgetModel.create(widgets, function (err, docs) { return docs; });
+            });
+        })
+        .sort('order')
+        .exec(function(err, docs) { return docs; });
 
-          .sort('order')
-          .exec();
 }
-
 
 
 
