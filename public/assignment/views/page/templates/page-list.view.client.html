@@ -4,16 +4,16 @@
     <div class="container-fluid">
         <div class="navbar-header">
             <p class="navbar-text pull-left">
-                <a href="#!/user/{{model.userId}}/website" class="navbar-link">
+                <a href="#!/website" class="navbar-link">
           <span class="wd-left glyphicon glyphicon-menu-left">
           </span>
                 </a>
             </p>
-            <a class="wd-list navbar-brand" href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page">
+            <a class="wd-list navbar-brand" href="#!/website/{{model.websiteId}}/page">
                 Pages
             </a>
             <p class="navbar-text pull-right">
-                <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/new" class="navbar-link">
+                <a href="#!/website/{{model.websiteId}}/page/new" class="navbar-link">
           <span class="wd-ok glyphicon glyphicon-plus">
           </span>
                 </a>
@@ -25,10 +25,10 @@
 <div class="container-fluid">
     <ul class="list-group">
         <li ng-repeat="page in model.pages" class="list-group-item">
-            <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}/widget" class="hover">
+            <a href="#!/website/{{model.websiteId}}/page/{{page._id}}/widget" class="hover">
                 {{page.name}}
             </a>
-            <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}">
+            <a href="#!/website/{{model.websiteId}}/page/{{page._id}}">
                 <span class="glyphicon glyphicon-cog pull-right"></span>
             </a>
         </li>

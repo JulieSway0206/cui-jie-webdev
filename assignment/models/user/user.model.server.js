@@ -19,9 +19,14 @@ userModel.updateUser = updateUser;
 userModel.deleteUser = deleteUser;
 userModel.addWebsite = addWebsite;
 userModel.deleteWebsite = deleteWebsite;
-
+userModel.findUserByFacebookId = findUserByFacebookId;
 
 module.exports = userModel;
+
+
+function findUserByFacebookId(facebookId) {
+    return userModel.findOne({'facebook.id': facebookId});
+}
 
 
 function deleteWebsite(websiteId) {
@@ -47,7 +52,14 @@ function addWebsite(userId, websiteId) {
 
 
 function createUser(user) {
-    return userModel.create(user);
+    if(user.roles){
+        user.roles = user.roles.split(',');
+    } else {
+        user.roles = ['USER'];
+    }
+        return userModel.create(user);
+
+
 }
 
 function findUserById(userId) {
@@ -70,6 +82,9 @@ function updateUser(userId, newUser) {
     // things we don't wanna update
     delete newUser.username;
     delete newUser.password;
+    if(typeof newUser.roles === 'string'){
+        newUser.roles = newUser.roles.split(',');
+    }
     return userModel.update({_id: userId}, {$set: newUser});
 }
 

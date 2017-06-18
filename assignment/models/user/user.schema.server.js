@@ -8,6 +8,15 @@ var userSchema = mongoose.Schema({
     password: String,
     firstName: String,
     lastName: String,
+    //mongoose implements an enum attribute to validate values inside this enum array
+    //if you don't tell me the role value, assumes it is USER
+    roles: [{type: String,
+        default: 'USER',
+        enum: ['USER', 'FACULTY', 'STUDENT', 'ADMIN']}],
+    facebook: {
+        id:    String,
+        token: String
+    },
     email: String,
     phone: String,
     websites: [{type: mongoose.Schema.Types.ObjectId, ref: "WebsiteModel"}],

@@ -1,4 +1,4 @@
-/**
+ /**
  * Created by SeedofWind on 5/26/17.
  */
 (function () {
@@ -17,10 +17,93 @@
             findUserByUsername: findUserByUsername,
             findUserByCredentials:  findUserByCredentials,
             updateUser: updateUser,
-            deleteUser: deleteUser
+            deleteUser: deleteUser,
+            login: login,
+            checkLoggedIn: checkLoggedIn,
+            logout: logout,
+            register: register,
+            checkAdmin: checkAdmin,
+            findAllUsers: findAllUsers,
+            unregister: unregister
         };
         return api;
 
+
+
+        function unregister() {
+            var url = "/api/assignment/unregister";
+            return $http.post(url)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+
+
+        function findAllUsers() {
+            var url = "/api/assignment/user";
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                });
+
+
+        }
+
+
+        function checkAdmin() {
+            var url = "/api/assignment/checkAdmin";
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+
+
+        function register(userObj) {
+            var url = "/api/assignment/register";
+            return $http.post(url, userObj)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+        
+        
+        function logout() {
+            var url = "/api/assignment/logout";
+            return $http.post(url)
+                .then(function (response) {
+                    return response.data;
+                });
+
+        }
+
+
+
+        function checkLoggedIn() {
+            var url = "/api/assignment/checkLoggedIn";
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+        
+        function login(username, password) {
+            var url = "/api/assignment/login";
+            var credentials = {
+                username: username,
+                password: password
+            };
+
+            return $http.post(url, credentials)
+                .then(function (response) {
+                    return response.data;
+                });
+
+        }
+        
+        
         function updateUser (userId, user) {
             var url = "/api/assignment/user/"+userId;
             return $http.put(url, user)

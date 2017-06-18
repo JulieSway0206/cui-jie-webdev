@@ -6,10 +6,10 @@
         .module('WebAppMaker')
         .controller('pageNewController', pageNewController);
     
-    function pageNewController($routeParams, $location, pageService) {
+    function pageNewController($routeParams, $location, pageService, currentUser) {
         var model = this;
 
-        model.userId = $routeParams['userId'];
+        model.userId = currentUser._id;//$routeParams['userId'];
         model.websiteId = $routeParams['websiteId'];
         model.pageId = $routeParams.pageId;
         model.createPage = createPage;
@@ -29,7 +29,7 @@
             pageService
                        .createPage(page)
                        .then(function () {
-                           $location.url('/user/'+model.userId+'/website/'+model.websiteId+'/page');
+                           $location.url('/website/'+model.websiteId+'/page');
                        });
         }
 

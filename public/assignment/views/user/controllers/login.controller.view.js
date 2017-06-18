@@ -17,11 +17,12 @@
           function login(username, password) {
               // var found = userService.findUserByCredentials(username, password);
               userService
-                  .findUserByCredentials(username, password)
+                  // .findUserByCredentials(username, password)
+                  .login(username, password)
                   .then(login, loginError);
               function login(found) {
                   if (found) {
-                      $location.url('/user/' + found._id);
+                      $location.url('/profile');
                   } else {
                       model.message = "Sorry, " + username + " not found. Please try again!";
                   }

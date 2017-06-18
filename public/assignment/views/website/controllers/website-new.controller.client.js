@@ -6,10 +6,10 @@
         .module('WebAppMaker')
         .controller('websiteNewController', websiteNewController);
     
-    function websiteNewController($routeParams,$location,  websiteService) {
+    function websiteNewController($routeParams,$location, websiteService, currentUser) {
         var model = this;
 
-        model.userId = $routeParams['userId'];
+        model.userId = currentUser._id;//$routeParams['userId'];
         model.createWebsite = createWebsite;
 
         function init() {
@@ -26,7 +26,7 @@
             websiteService
                          .createWebsite(website, model.userId)
                          .then(function () {
-                             $location.url('/user/'+model.userId+'/website');
+                             $location.url('/website');
                          });
         }
         

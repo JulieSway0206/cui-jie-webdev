@@ -121,7 +121,7 @@ function uploadImage(req, res) {
             widgetModel
                 .updateWidget(widgetId, widget)
                 .then(function () {
-                    var callbackUrl   = "/assignment/index.html#!/user/" + userId + "/website/"+ websiteId + "/page/" + pageId + "/widget/" + widgetId;
+                    var callbackUrl   = "/assignment/index.html#!/" + "website/"+ websiteId + "/page/" + pageId + "/widget/" + widgetId;
                     res.redirect(callbackUrl);
                 }, function (err) {
                     res.send(err);
