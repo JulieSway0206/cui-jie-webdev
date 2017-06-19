@@ -14,17 +14,26 @@
         model.websiteId = $routeParams['websiteId'];
         model.pageId = $routeParams['pageId'];
         model.widgetId = $routeParams['widgetId'];
+        function init() {
+            widgetService
+                .findWidgetById(model.widgetId)
+                .then(function (widget) {
+                    model.widget = widget;
+                    console.log(model.widget.name);
+                });
+        }
+        init();
 
         function selectPhoto(photo) {
             var url = "https://farm" + photo.farm + ".staticflickr.com/" + photo.server;
             url += "/" + photo.id + "_" + photo.secret + "_b.jpg";
             widget =  {'_id': model.widgetId,
-                'name': '',
-                'text': '',
+                'name': model.widget.name,
+                'text': model.widget.text,
                 'url': url,
                 'widgetType': 'IMAGE',
                 'pageId': model.pageId,
-                'width': ''};
+                'width': model.widget.width};
             widgetService
                 .updateWidget(model.widgetId, widget)
                 .then(function (){

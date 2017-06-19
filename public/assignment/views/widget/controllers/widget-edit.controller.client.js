@@ -17,12 +17,14 @@
 
          model.deleteWidget = deleteWidget;
          model.updateWidget = updateWidget;
+         model.saveWidget = saveWidget;
 
          function init() {
              widgetService
                  .findWidgetById(model.widgetId)
                  .then(function (widget) {
                      model.widget = widget;
+                     console.log(model.widget.name);
                      model.preWidget = angular.copy(model.widget);
                  });
              widgetService.findAllWidgetsForPage(model.pageId)
@@ -52,6 +54,13 @@
                               $location.url('/website/'+model.websiteId+'/page/'+model.pageId+ '/widget');
                           });
 
+         }
+
+         function saveWidget(widgetId, widget) {
+             widgetService.updateWidget(widgetId, widget)
+                 .then(function () {
+                     $location.url('/website/'+model.websiteId+'/page/'+model.pageId+'/widget/'+widgetId+'/search');
+                 });
          }
      }
  })();
