@@ -33,6 +33,11 @@
 
 
         function updateWebsite (websiteId, website) {
+            if (website.name === null || website.name === '' || typeof website.name === 'undefined') {
+                model.error = "Name is required!";
+                model.submitted = true;
+                return;
+            }
             websiteService
                           .updateWebsite(websiteId, website)
                           .then(function () {

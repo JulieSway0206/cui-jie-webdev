@@ -1,6 +1,7 @@
 var app = require('../../express');
 var userModel = require('../models/user/user.model.server');
 var passport  = require('passport');
+var bcrypt = require("bcrypt-nodejs");
 var LocalStrategy = require('passport-local').Strategy;
 passport.use(new LocalStrategy(localStrategy));
 passport.serializeUser(serializeUser);
@@ -16,7 +17,8 @@ var facebookConfig = {
 passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
 
 app.get('/api/assignment/user/:userId', findUserById);
-app.get('/api/assignment/user', isAdmin, findAllUsers);
+app.get    ('/api/assignment/user', findUser);
+app.get    ('/api/assignment/users', isAdmin, findAllUsers);
 app.post('/api/assignment/user',isAdmin, createUser);
 app.put('/api/assignment/user/:userId', isAdmin, updateUser);
 app.delete('/api/assignment/user/:userId', isAdmin, deleteUser);
@@ -112,6 +114,8 @@ function checkAdmin(req, res) {
 
 function register(req, res) {
     var userObj = req.body;
+    userObj.password = bcrypt.hashSync(userObj.password);
+
     userModel
         .createUser(userObj)
         .then(function (user) {
@@ -150,11 +154,14 @@ function localStrategy(username, password, done) {
         .findUserByCredentials(username, password)
         .then(
             function(user) {
-                if (!user) { return done(null, false); }
-                return done(null, user);
+                if(user && bcrypt.compareSync(password, user.password)) {
+                    done(null, user);
+                } else {
+                    done(null, false);
+                }
             },
             function(err) {
-                if (err) { return done(err); }
+                done(err, false);
             }
         );
 }
@@ -231,6 +238,14 @@ function findUserById(req, res) {
 }
 
 function findAllUsers(req, res) {
+    userModel
+        .findAllUsers()
+        .then(function (users) {
+            res.json(users);
+        })
+}
+
+function findUser(req, res) {
     var username = req.query['username'];
     var password = req.query.password;
     if (username && password) {
@@ -252,12 +267,6 @@ function findAllUsers(req, res) {
                 } else {
                     res.sendStatus(404);
                 }
-            });
-    } else {
-        userModel
-            .findAllUsers()
-            .then(function (users) {
-                res.json(users);
             });
     }
 }

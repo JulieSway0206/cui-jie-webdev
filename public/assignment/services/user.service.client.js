@@ -41,7 +41,7 @@
 
 
         function findAllUsers() {
-            var url = "/api/assignment/user";
+            var url = "/api/assignment/users";
             return $http.get(url)
                 .then(function (response) {
                     return response.data;

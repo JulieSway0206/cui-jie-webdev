@@ -57,8 +57,10 @@
             <input type="text"
                    class="form-control"
                    id="name"
+                   ng-class="{submitted:model.submitted}"
                    placeholder="Name"
-                   ng-model="website.name">
+                   ng-model="website.name" required>
+            <div ng-show="model.error" class="alert alert-danger">{{model.error}}</div>
             <label for="description">Description</label>
             <textarea id="description"
                       ng-model="website.description"
@@ -66,7 +68,7 @@
                       rows="6"
                       placeholder="Description"></textarea>
             <a class="btn btn-block btn-success"
-               ng-click="model.createWebsite(website)">
+                    ng-click="model.createWebsite(website)">
                 Create
             </a>
         </div>

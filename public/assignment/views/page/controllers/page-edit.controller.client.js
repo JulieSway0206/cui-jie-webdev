@@ -16,6 +16,11 @@
         model.deletePage = deletePage;
 
         function updatePage(pageId, page) {
+            if (page.name === null || page.name === '' || typeof page.name === 'undefined') {
+                model.error = "Name is required!";
+                model.submitted = true;
+                return;
+            }
             pageService
                       .updatePage(pageId, page)
                       .then(function () {

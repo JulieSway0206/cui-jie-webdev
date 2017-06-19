@@ -61,7 +61,9 @@
                    class="form-control"
                    id="name"
                    placeholder="Name"
+                   ng-class="{submitted:model.submitted}"
                    ng-model="model.website.name">
+            <div ng-show="model.error" class="alert alert-danger">{{model.error}}</div>
             <label for="description">Description</label>
             <textarea id="description"
                       ng-model="model.website.description"

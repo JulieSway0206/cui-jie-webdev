@@ -42,6 +42,11 @@
                           });
          }
          function updateWidget (widgetId, widget) {
+             if (widget.name === null || widget.name === '' || typeof widget.name === 'undefined') {
+                 model.error = "Name is required!";
+                 model.submitted = true;
+                 return;
+             }
              widgetService.updateWidget(widgetId, widget)
                           .then(function () {
                               $location.url('/website/'+model.websiteId+'/page/'+model.pageId+ '/widget');

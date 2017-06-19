@@ -5,8 +5,10 @@
     <input type="text"
            class="form-control"
            id="name"
+           ng-class="{submitted:model.submitted}"
            placeholder="heading name"
            ng-model="model.widget.name">
+    <div ng-show="model.error" class="alert alert-danger">{{model.error}}</div>
     <label for="text">Text</label>
     <input type="text"
            class="form-control"

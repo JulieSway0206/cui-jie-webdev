@@ -16,8 +16,9 @@
 
           function login(username, password) {
               // var found = userService.findUserByCredentials(username, password);
+              if(username && password){
               userService
-                  // .findUserByCredentials(username, password)
+              // .findUserByCredentials(username, password)
                   .login(username, password)
                   .then(login, loginError);
               function login(found) {
@@ -31,7 +32,7 @@
               function loginError() {
                   model.message = "Sorry, not found. Please try again!";
               }
-
+          }
           }
       }
       

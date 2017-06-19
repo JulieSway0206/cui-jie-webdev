@@ -56,8 +56,10 @@
             <input type="text"
                    class="form-control"
                    id="name"
+                   ng-class="{submitted:model.submitted}"
                    placeholder="Page Name"
                    ng-model="page.name">
+            <div ng-show="model.error" class="alert alert-danger">{{model.error}}</div>
             <label for="title">Title</label>
             <input id="title"
                    type="text"

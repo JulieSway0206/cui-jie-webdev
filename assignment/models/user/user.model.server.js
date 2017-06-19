@@ -75,7 +75,7 @@ function findUserByUsername(username) {
 }
 
 function findUserByCredentials(username, password) {
-    return userModel.findOne({username: username, password: password});
+    return userModel.findOne({username: username});
 }
 
 function updateUser(userId, newUser) {

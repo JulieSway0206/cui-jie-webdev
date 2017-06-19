@@ -1,32 +1,50 @@
 <div class="container-fluid">
         <h1>Register</h1>
 
-        <div ng-show="model.error" class="alert alert-danger">
-                {{model.error}}
-        </div>
 
         <label for="username">Username</label>
         <input type="text"
                id="username"
                ng-model="username"
                class="form-control"
-               placeholder="username"/>
+               placeholder="username"
+               ng-class="{submitted:model.submitted1}"
+               name="username" required/>
+        <div ng-show="model.error1" class="alert alert-danger">
+                        {{model.error1}}
+        </div>
         <label for="password">Password</label>
         <input type="password"
                id="password"
                ng-model="password"
                class="form-control"
-               placeholder="password"/>
+               placeholder="password"
+               ng-class="{submitted:model.submitted2}"
+               name="password" required/>
+        <div ng-show="model.error2" class="alert alert-danger">
+                {{model.error2}}
+        </div>
         <label for="reenter">Re-enter password</label>
         <input type="password"
                id="reenter"
                ng-model="password2"
                class="form-control"
-               placeholder="verify password"/>
+               ng-class="{submitted:model.submitted3}"
+               placeholder="verify password"
+               name="reenter" required/>
+
+        <div ng-show="model.error3" class="alert alert-danger">
+                {{model.error3}}
+        </div>
+        <div ng-show="model.error4" class="alert alert-danger">
+                {{model.error4}}
+        </div>
         <a ng-click="model.register(username, password, password2)"
-           class="btn btn-primary btn-block">
+                class="btn btn-primary btn-block">
                 Register
         </a>
         <a class="btn btn-danger  btn-block"
            href="#!/login">Cancel</a>
+
+
 </div>

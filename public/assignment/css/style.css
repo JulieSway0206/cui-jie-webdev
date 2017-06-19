@@ -120,3 +120,11 @@ a.hover{
     z-index: 1;
 }
 
+.ng-submitted .ng-invalid {
+    border-color: red;
+}
+
+input.submitted
+{
+    border-color: red;
+}
