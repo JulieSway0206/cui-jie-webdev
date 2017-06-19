@@ -14,7 +14,7 @@
 
               function register(username, password, password2) {
 
-                  if(username === null || username === '' || typeof username === 'undefined'){
+                  if (username === null || username === '' || typeof username === 'undefined') {
                       model.error1 = 'Username is required!!';
                       model.error2 = null;
                       model.error3 = null;
@@ -59,22 +59,27 @@
 
                   // var found = userService.findUserByUsername(username);
                   userService.findUserByUsername(username)
-                             .then(
-                                 function () {
-                                     model.error1 = "Sorry, that username is taken.";
-                                 },
-                                 function () {
-                                     var newUser = {
-                                         username: username,
-                                         password: password
-                                     };
-                                     return userService
-                                         .register(newUser);
-                                 })
-                               .then(function (user) {
-                                     $location.url('/profile');
-                        });
-             }
+                      .then(rendUser);
+
+
+                  function rendUser(user) {
+                      if (user) {
+                          model.error1 = "Sorry, the username you just picked is already taken.";
+                      } else {
+                          var newUser = {
+                              username: username,
+                              password: password
+                          };
+
+                          userService
+                              .register(newUser)
+                              .then(function () {
+                                  $location.url('/profile');
+                              });
+                      }
+
+                  }
+              }
           }
       
 })();

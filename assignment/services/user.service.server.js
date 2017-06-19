@@ -265,7 +265,8 @@ function findUser(req, res) {
                 if(user) {
                     res.json(user);
                 } else {
-                    res.sendStatus(404);
+                    user = null;
+                    res.send(user);
                 }
             });
     }
