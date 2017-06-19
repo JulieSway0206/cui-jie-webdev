@@ -20,7 +20,7 @@ app.get('/api/assignment/user/:userId', findUserById);
 app.get    ('/api/assignment/user', findUser);
 app.get    ('/api/assignment/users', isAdmin, findAllUsers);
 app.post('/api/assignment/user',isAdmin, createUser);
-app.put('/api/assignment/user/:userId', isAdmin, updateUser);
+app.put('/api/assignment/user/:userId', updateUser);
 app.delete('/api/assignment/user/:userId', isAdmin, deleteUser);
 
 app.post('/api/assignment/login', passport.authenticate('local'), login);
