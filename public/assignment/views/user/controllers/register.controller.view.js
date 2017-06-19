@@ -64,7 +64,7 @@
 
                   function rendUser(user) {
                       if (user) {
-                          model.error1 = "Sorry, the username you just picked is already taken.";
+                          model.error1 = "Sorry, the username is already taken.";
                       } else {
                           var newUser = {
                               username: username,
