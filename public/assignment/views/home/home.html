@@ -17,7 +17,7 @@
                 <li ng-show="!model.currentUser._id"><a href="#!/login">Login</a></li>
                 <li ng-show="!model.currentUser._id"><a href="#!/register">Register</a></li>
                 <li ng-show="model.currentUser._id"><a href="#!/profile">Profile</a></li>
-                <li ng-show="model.currentUser._id"><a href="../../../index.html">Logout</a></li>
+                <li ng-show="model.currentUser._id"><a ng-click="model.logout()">Logout</a></li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>
