@@ -1,0 +1,80 @@
+<div ng-include="'views/common/header.view.client.html'"></div>
+
+
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-lg-2">
+            <select ng-model="selectedType" ng-init="selectedType = 'Search By'"
+                    style="width: 77%;">
+                <option value="Search By">Search By</option>
+                <option value="Name">Name</option>
+                <!--<option value="Author">Author</option>-->
+                <option value="ISBN">ISBN</option>
+            </select>
+        </div>
+        <div class="col-lg-6">
+            <div class="input-group">
+                <input type="text" class="form-control" aria-label="..." ng-model="searchText">
+                <span class="input-group-btn">
+                   <a ng-click="model.searchBook(selectedType, searchText)"
+                      class="btn btn-default form-control"
+                      type="button">
+                   <span class="glyphicon glyphicon-search"></span>
+                   </a>
+                </span>
+            </div><!-- /input-group -->
+        </div><!-- /.col-lg-6 -->
+
+    </div><!-- /.row -->
+
+
+</div>
+
+
+
+
+<div id="content" class="container-fluid" ng-repeat="book in model.books">
+
+
+    <div>
+        <ul>
+
+            <li>
+                <div id="username">
+                    <h3 class="username">
+                        Seller: {{book._user.username}}
+                    </h3>
+                </div>
+                <div id="title">
+                    <h3 class="title">
+                        {{book.name}}
+                    </h3>
+                </div>
+                <div class="abaproduct-image">
+                        <img src={{book.photo}}>
+                </div>
+                <br>
+                <div id="price">
+                    <h3 class="price">
+                        Price: {{book.price}}
+                    </h3>
+                </div>
+                <div class="abaproduct-details">
+                    <div id="button">
+                        <a href="#!/home/books/{{book._id}}"
+                           class="form-submit btn btn-success form-submit"
+                           id="edit-add-to-cart"
+                           name="op"
+                           type="submit">
+                            Check this Book
+                        </a>
+                    </div>
+                </div>
+                </li>
+            </ul>
+        </div>
+</div>
+
+
+

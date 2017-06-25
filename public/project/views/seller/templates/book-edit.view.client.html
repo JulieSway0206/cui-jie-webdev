@@ -1,0 +1,61 @@
+
+
+<style>
+    body {
+        overflow-x: hidden;
+        margin-top: 60px;
+        margin-bottom: 60px;
+    }
+</style>
+
+
+
+
+
+
+
+
+<div ng-include="'views/common/header-seller.view.client.html'"></div>
+
+<div class="container-fluid">
+    <div ng-show="model.message" class="alert alert-info">
+        {{model.message}}</div>
+
+    <div>
+        <form>
+            <div class="form-group">
+                <label for="isbn">ISBN</label>
+                <input type="text"
+                       class="form-control"
+                       id="isbn"
+                       placeholder="ISBN"
+                       ng-model="model.book.isbn">
+            </div>
+            <div class="form-group">
+                <label for="inventory">Inventory</label>
+                <input type="number"
+                       class="form-control"
+                       id="inventory"
+                       placeholder="eg.2"
+                       ng-model="model.book.inventory">
+            </div>
+            <div class="form-group">
+                <label for="price">Price</label>
+                <input type="text"
+                       class="form-control"
+                       id="price"
+                       placeholder="$12"
+                       ng-model="model.book.price">
+            </div>
+            <label for="description">Description</label>
+            <textarea class="form-control"
+                      id="description"
+                      rows="5"
+                      ng-model="model.book.description"></textarea>
+            <br>
+            <a ng-click="model.updateBook(model.bookId,model.book)" class="btn btn-success btn-block">Update</a>
+            <a ng-click="model.deleteBook(model.bookId)" class="btn btn-danger btn-block">Delete</a>
+        </form>
+    </div>
+</div>
+

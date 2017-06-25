@@ -10,7 +10,7 @@
 
         this.searchBook= searchBook;
 
-        var urlBase = url = "https://www.googleapis.com/books/v1/volumes?q=harry+potter";
+        var urlBase = url = "https://www.googleapis.com/books/v1/volumes?q=harry+potter&maxResults=1";
 
 
         function searchBook(searchText) {

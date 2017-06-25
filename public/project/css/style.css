@@ -5,18 +5,27 @@
 .home{
     background-image: linear-gradient(rgba(0,0,0,0),rgba(0,0,0,0.7)),url(../image/bookhome.jpg);
     background-size: cover;
-    height: 100vh;
+    height: 60vh;
     background-position: center;
 }
 
-.home > h3{
+.home > h1{
     color: white;
+    position: relative;
+    top: 35%;
+    left: 35%;
+
 }
-div #title > h3 a{
+
+h3.title {
     color: #c9302c;
+}
+h3.price {
+    color: gold;
 }
 body{
     padding-top: 51px;
+    height: 100vh;
 }
 
 div.row{
@@ -45,3 +54,20 @@ div #outerlink .btn{
     background-color: #eb9316;
     width: 50%;
 }
+body {
+
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.login{
+    background-color: #9acfea;
+}
+a.hover{
+    text-decoration: none;
+}
+
+/*user*/
+
+/*login*/
+

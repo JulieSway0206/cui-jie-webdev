@@ -1,5 +1,5 @@
 /**
- * Created by SeedofWind on 6/9/17.
+ * Created by SeedofWind on 5/27/17.
  */
 (function () {
     angular
@@ -7,18 +7,123 @@
         .service('bookService', bookService);
 
     function bookService($http) {
+        // any other function that is not tied to 'this' is private function
+        // only tied to 'this' can be publicly used outside
+        this.findAllBooksForUser = findAllBooksForUser;
+        this.findBookById = findBookById;
+        this.deleteBook = deleteBook;
+        this.createBook = createBook;
+        this.updateBook = updateBook;
+        this.findAllBooks = findAllBooks;
+        this.findAllBookWithKeyword = findAllBookWithKeyword;
+        this.findBookByISBN = findBookByISBN;
+        this.findBookByAuthor = findBookByAuthor;
+        this.findBookByName = findBookByName;
+        this.updateInventory = updateInventory;
 
-        this.bookInfo= bookInfo;
-
-        var urlBase = "https://play.google.com/store/books/details?id=tcSMCwAAQBAJ&source=gbs_api";
 
 
-        function bookInfo(id) {
-            var url = urlBase
-                .replace("tcSMCwAAQBAJ", id);
-            return $http.get(url)
 
+
+
+        function updateInventory(bookId, quantity) {
+            var url = "/api/project/book/inventory/" + bookId;
+            var inv = {inventory: quantity};
+            return $http.put(url, inv)
+                .then(function (response) {
+                    return response.data;
+                });
         }
 
+
+
+        function findBookByISBN(isbn) {
+            return $http.get("/api/project/book?isbn=" + isbn)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+        function findBookByAuthor(author) {
+            return $http.get("/api/project/book?author=" + author)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+        function findBookByName(bookName) {
+            return $http.get("/api/project/book?bookName=" + bookName)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+
+
+
+        function findAllBookWithKeyword(keyword) {
+            return $http.get("/api/project/book?searchText=" + keyword)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+
+
+
+        function findAllBooks() {
+            var url = "/api/project/books";
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+
+
+        function updateBook (bookId, book) {
+            var url = "/api/project/book/" + bookId;
+            return $http.put(url, book)
+                        .then(function (response) {
+                            return response.data;
+                        });
+        }
+
+        function createBook(book, userId){
+            var url = "/api/project/user/"+userId+"/book";
+            return $http
+                        .post(url, book)
+                        .then(function (response) {
+                            return response.data;
+                        });
+        }
+
+
+
+        function deleteBook(userId, bookId) {
+            var url = "/api/project/book/" + bookId;
+            return $http.delete(url)
+                        .then(function (response) {
+                            return response.data;
+                        });
+        }
+
+
+
+        function findBookById(bookId) {
+            var url = " /api/project/book/" + bookId;
+            return $http.get(url)
+                        .then(function (response) {
+                            return response.data;
+                        });
+        }
+
+        function findAllBooksForUser(userId) {
+            var url = "/api/project/user/"+userId+"/book";
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
     }
 })();

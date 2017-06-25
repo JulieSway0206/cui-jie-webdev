@@ -13,7 +13,6 @@
         model.text = $routeParams['text'];
         model.searchBook = searchBook;
         model.handleResponse = handleResponse;
-        model.toBook = toBook;
 
         function init() {
             searchBook(model.text);
@@ -36,16 +35,6 @@
 
         }
 
-        function toBook(item) {
-
-            for(var i = 0; i<item.length; i++) {
-                if (item[i].type === 'ISBN_13') {
-                    var isbn = item.identifier;
-                }
-            }
-            $location.url('/search/'+model.text+'/'+isbn);
-
-        }
 
     }
 })();
