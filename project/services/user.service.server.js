@@ -48,44 +48,6 @@ app.get('/auth/google/callback',
 
 
 
-function facebookStrategy(token, refreshToken, profile, done) {
-    userModel
-        .findUserByFacebookId(profile.id)
-        .then(
-            function(user) {
-                if(user) {
-                    return done(null, user);
-                } else {
-                    var email = profile.emails[0].value;
-                    var emailParts = email.split("@");
-                    var newFacebookUser = {
-                        username:  emailParts[0],
-                        firstName: profile.name.givenName,
-                        lastName:  profile.name.familyName,
-                        email:     email,
-                        facebook: {
-                            id:    profile.id,
-                            token: token
-                        }
-                    };
-                    return userModel.createUser(newFacebookUser);
-                }
-            },
-            function(err) {
-                if (err) { return done(err); }
-            }
-        )
-        .then(
-            function(user){
-                return done(null, user);
-            },
-            function(err){
-                if (err) { return done(err); }
-            }
-        );
-}
-
-
 function googleStrategy(token, refreshToken, profile, done) {
     userModel
         .findUserByGoogleId(profile.id)
@@ -106,7 +68,7 @@ function googleStrategy(token, refreshToken, profile, done) {
                             token: token
                         }
                     };
-                    return userModel.createUser(newGoogleUser);
+                    return userModel.createGoogleUser(newGoogleUser);
                 }
             },
             function(err) {
@@ -115,15 +77,15 @@ function googleStrategy(token, refreshToken, profile, done) {
         )
         .then(
             function(user){
-
                 return done(null, user);
             },
             function(err){
-
                 if (err) { return done(err); }
             }
         );
 }
+
+
 
 
 function unfollowSeller(req, res) {

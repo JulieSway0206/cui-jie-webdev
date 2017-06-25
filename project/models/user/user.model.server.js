@@ -25,6 +25,7 @@ userModel.deleteOrder = deleteOrder;
 userModel.findFollowSellerById = findFollowSellerById;
 userModel.followSeller = followSeller;
 userModel.unfollowSeller = unfollowSeller;
+userModel.createGoogleUser = createGoogleUser;
 
 
 module.exports = userModel;
@@ -84,6 +85,7 @@ function addOrder(userId, orderId) {
 
 
 function findUserByGoogleId(googleId) {
+    console.log(googleId);
     return userModel.findOne({'google.id': googleId});
 }
 
@@ -117,6 +119,11 @@ function createUser(user) {
         user.roles = ['USER'];
     }
         return userModel.create(user);
+
+
+}
+function createGoogleUser(user) {
+    return userModel.create(user);
 
 
 }

@@ -13,6 +13,7 @@
         model.currentUser = currentUser;
         model.logout = logout;
         model.unfollowSeller = unfollowSeller;
+        model.init = init;
 
         function init() {
 
@@ -33,7 +34,7 @@
             userService
                 .unfollowSeller(userId, sellerId)
                 .then(function () {
-                    init();
+                    $location.url('/profile/buyer')
                 });
         }
 

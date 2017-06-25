@@ -118,6 +118,7 @@
                      controller: 'registerController',
                      controllerAs: 'model'
                  })
+
                  .when('/profile/buyer',{
                      templateUrl: 'views/buyer/templates/buyer-profile.view.client.html',
                      controller:'profileController',
