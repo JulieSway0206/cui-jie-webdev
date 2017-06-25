@@ -19,7 +19,7 @@ userModel.updateUser = updateUser;
 userModel.deleteUser = deleteUser;
 userModel.addBook = addBook;
 userModel.deleteBook = deleteBook;
-userModel.findUserByFacebookId = findUserByFacebookId;
+userModel.findUserByGoogleId = findUserByGoogleId;
 userModel.addOrder = addOrder;
 userModel.deleteOrder = deleteOrder;
 userModel.findFollowSellerById = findFollowSellerById;
@@ -83,8 +83,8 @@ function addOrder(userId, orderId) {
 
 
 
-function findUserByFacebookId(facebookId) {
-    return userModel.findOne({'facebook.id': facebookId});
+function findUserByGoogleId(googleId) {
+    return userModel.findOne({'google.id': googleId});
 }
 
 

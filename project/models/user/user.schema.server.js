@@ -13,7 +13,7 @@ var userSchema = mongoose.Schema({
     roles: [{type: String,
         enum: ['BUYER', 'SELLER', 'ADMIN']}],
     google: {
-        id:    String,
+        id:   String,
         token: String
     },
     follows:[{type: mongoose.Schema.Types.ObjectId, ref: "UserModel"}],
