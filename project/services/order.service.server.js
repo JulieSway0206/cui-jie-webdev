@@ -36,8 +36,7 @@ function updateBOrder(req, res) {
 function updateBuyerOrder(req, res) {
     var buyerOrderId = req.params.orderId;
     var sorderId = req.body.sorderId;
-    console.log(buyerOrderId);
-    console.log(sorderId);
+
     orderModel
         .updateBuyerOrder(buyerOrderId,sorderId)
         .then(function (status) {

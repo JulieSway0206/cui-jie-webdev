@@ -25,12 +25,56 @@
             checkAdmin: checkAdmin,
             findAllUsers: findAllUsers,
             unregister: unregister,
-            updateBook: updateBook
+            updateBook: updateBook,
+            findFollowSellerById: findFollowSellerById,
+            followSeller: followSeller,
+            unfollowSeller: unfollowSeller,
+            // findAllFollowingForUser:findAllFollowingForUser
         };
         return api;
 
 
 
+
+
+
+        //
+        // function findAllFollowingForUser(userId) {
+        //     var url = "/api/project/following/user/"+userId;
+        //     return $http.get(url)
+        //         .then(function (response) {
+        //             return response.data;
+        //         });
+        // }
+
+
+        function unfollowSeller(userId, sellerId) {
+            var url = "/api/project/unfollowseller/user/"+userId;
+            var followId = {sellerId: sellerId};
+            return $http.put(url, followId)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+
+        function followSeller(userId, sellerId) {
+            var url = "/api/project/followseller/user/"+userId;
+            var followId = {sellerId: sellerId};
+            return $http.put(url, followId)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+        function findFollowSellerById(userId,sellerId) {
+            var url = "/api/project/follow/user/"+userId;
+            var followId = {sellerId: sellerId};
+            return $http.post(url, followId)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
 
 
 

@@ -15,6 +15,7 @@
         model.renderBooks = renderBooks;
         model.searchBook = searchBook;
         model.logout = logout;
+        model.init = init;
 
 
         function init() {
@@ -51,52 +52,62 @@
 
         function searchBook(type, searchText) {
             model.books = [];
+            model.message = null;
 
-            if (searchText === "") {
+            if (searchText === null || searchText === "" || typeof searchText === 'undefined') {
                 bookService
                     .findAllBooks()
                     .then(function (books) {
-                        model.books = books;
-                    }, function (err) {
-                       model.message = "Sorry, No books"
+                        if(books.length !== 0){
+
+                            model.books = books;
+                        } else {
+
+                            model.message = "Sorry, no books!"
+                        }
                     });
+                return
             }
 
             switch (type) {
-                case "Search By":
-                    bookService
-                        .findAllBookWithKeyword(searchText)
-                        .then(function (books) {
-                            model.books = books;
-                        }, function (err) {
-                            model.message = "Sorry, no books match your search!"
-                        });
-                    break;
+
                 case "Name":
                     bookService
                         .findBookByName(searchText)
                         .then(function (books) {
-                            model.books = books;
-                        }, function (err) {
-                            model.message = "Sorry, no books match your search!"
+                            if(books.length !== 0){
+
+                                model.books = books;
+                            } else {
+
+                                model.message = "Sorry, no books match your search!"
+                            }
                         });
                     break;
                 case "Author":
                     bookService
                         .findBookByAuthor(searchText)
                         .then(function (books) {
-                            model.books = books;
-                        }, function (err) {
-                            model.message = "Sorry, no books match your search!"
+                            if(books.length !== 0){
+
+                                model.books = books;
+                            } else {
+
+                                model.message = "Sorry, no books match your search!";
+                            }
                         });
                     break;
                 case "ISBN":
                     bookService
                         .findBookByISBN(searchText)
                         .then(function (books) {
-                            model.books = books;
-                        }, function (err) {
-                            model.message = "Sorry, no books match your search!"
+                            if(books.length !== 0){
+
+                                model.books = books;
+                            } else {
+
+                                model.message = "Sorry, no books match your search!"
+                            }
                         });
                     break;
                 default:

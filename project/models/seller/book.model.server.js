@@ -5,6 +5,7 @@ var mongoose = require('mongoose');
 var bookSchema = require('./book.schema.server');
 var bookModel = mongoose.model('BookModel', bookSchema);
 var userModel = require('../user/user.model.server');
+var q = require('q');
 
 //api
 bookModel.findAllBooks = findAllBooks;
@@ -14,10 +15,10 @@ bookModel.deleteBookFromUser = deleteBookFromUser;
 bookModel.findBookById = findBookById;
 bookModel.updateBook = updateBook;
 bookModel.findAllBooks = findAllBooks;
-// bookModel.findAllBookWithKeyword = findAllBookWithKeyword;
+bookModel.findBookByAuthor = findBookByAuthor;
 bookModel.findBookByName = findBookByName;
 bookModel.updateInventory = updateInventory;
-mongoose.Promise = Promise;
+bookModel.findBookByISBN = findBookByISBN;
 
 module.exports = bookModel;
 
@@ -30,36 +31,66 @@ function updateInventory(bookId, quantity) {
 
 function findBookByName(bookName) {
 
+
     var searchOptions = {
-        fieldToSearch: 'name', // which field you want to search
+        fieldToSearch:'name',// which field you want to search
         caseSensitive: false // apply case sensitivity to your search
     };
 
-   return bookModel.regexSearch(bookName,searchOptions,function(err, result){
-    if(err){
-       return err;
-    } else {
+   // return bookModel.regexSearch(bookName,searchOptions);
+    var deferred = q.defer();
+    bookModel.regexSearch(bookName, searchOptions, function(err, book){
+        if(err) {
+            deferred.reject(err);
+        } else {
+            deferred.resolve(book);
+        }
+    });
+    return deferred.promise;
 
-       console.log(result);
-       return result;
-    }
-})
 }
 
 
 
-// function findAllBookWithKeyword(keyword) {
-//     return bookModel
-//             .textSearch(keyword, function (err, output) {
-//                 if (err) return handleError(err);
-//
-//                 var inspect = require('util').inspect;
-//                 console.log(inspect(output, { depth: null }));
-//             });
-//
-// }
+function findBookByAuthor(author) {
 
+    var searchOptions = {
+        fieldToSearch: 'authors', // which field you want to search
+        caseSensitive: false // apply case sensitivity to your search
+    };
 
+    // return bookModel.regexSearch(bookName,searchOptions);
+    var deferred = q.defer();
+    bookModel.regexSearch(author, searchOptions, function(err, book){
+        if(err) {
+            deferred.reject(err);
+        } else {
+            deferred.resolve(book);
+        }
+    });
+    return deferred.promise;
+
+}
+
+function findBookByISBN(isbn) {
+
+    var searchOptions = {
+        fieldToSearch: 'isbn', // which field you want to search
+        caseSensitive: false // apply case sensitivity to your search
+    };
+
+    // return bookModel.regexSearch(bookName,searchOptions);
+    var deferred = q.defer();
+    bookModel.regexSearch(isbn, searchOptions, function(err, book){
+        if(err) {
+            deferred.reject(err);
+        } else {
+            deferred.resolve(book);
+        }
+    });
+    return deferred.promise;
+
+}
 
 
 

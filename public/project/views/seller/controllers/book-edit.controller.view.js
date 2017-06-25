@@ -57,7 +57,8 @@
                         description: newBook.description,
                         isbn: newBook.isbn,
                         price: newBook.price,
-                        _user: model.userId
+                        _user: model.userId,
+                        authors: item.authors[0]+item.authors[1]
                     };
                     bookService
                         .updateBook(bookId, book)

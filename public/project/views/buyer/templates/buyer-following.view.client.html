@@ -9,6 +9,7 @@
 
 <div class="container-fluid">
 
+
     <table class="table table-striped">
         <thead>
         <tr>
@@ -18,55 +19,16 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td>Alice</td>
+        <tr ng-repeat="seller in model.sellers">
+            <td>{{seller.username}}</td>
             <td>
-                <a href="#">
-                    <scan class="glyphicon glyphicon-remove"></scan>
+                <a ng-click="model.unfollowSeller(model.userId, seller._id)">
+                    <span class="glyphicon glyphicon-remove"></span>
                 </a>
             </td>
             <td>
-                <a href="#">
-                    <scan class="glyphicon glyphicon-arrow-left"></scan>
-                </a>
-            </td>
-        </tr>
-        <tr>
-            <td>Bob</td>
-            <td>
-                <a href="#">
-                    <scan class="glyphicon glyphicon-remove"></scan>
-                </a>
-            </td>
-            <td>
-                <a href="#">
-                    <scan class="glyphicon glyphicon-arrow-left"></scan>
-                </a>
-            </td>
-        </tr>
-        <tr>
-            <td>Charlie</td>
-            <td>
-                <a href="#">
-                    <scan class="glyphicon glyphicon-remove"></scan>
-                </a>
-            </td>
-            <td>
-                <a href="#">
-                    <scan class="glyphicon glyphicon-arrow-left"></scan>
-                </a>
-            </td>
-        </tr>
-        <tr>
-            <td>Danny</td>
-            <td>
-                <a href="#">
-                    <scan class="glyphicon glyphicon-remove"></scan>
-                </a>
-            </td>
-            <td>
-                <a href="#">
-                    <scan class="glyphicon glyphicon-arrow-left"></scan>
+                <a href="#!/books/list/seller/{{seller._id}}">
+                    <span class="glyphicon glyphicon-arrow-left"></span>
                 </a>
             </td>
         </tr>

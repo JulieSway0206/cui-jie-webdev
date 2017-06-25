@@ -29,6 +29,10 @@ app.post('/api/project/logout', logout);
 app.post('/api/project/register', register);
 app.get('/api/project/checkAdmin', checkAdmin );
 app.post('/api/project/unregister', unregister);
+app.post('/api/project/follow/user/:userId', findFollowSellerById );
+app.put('/api/project/followseller/user/:userId', followSeller);
+app.put('/api/project/unfollowseller/user/:userId', unfollowSeller);
+// app.get('/api/project/following/user/:userId', findAllFollowingForUser);
 
 //from client to facebook
 app.get ('/auth/facebook', passport.authenticate('facebook', { scope : ['public_profile','email']}));
@@ -38,6 +42,7 @@ app.get('/auth/facebook/callback',
         successRedirect: '/project/index.html#!/profile',
         failureRedirect: '/project/index.html#!/login'
     }));
+
 
 
 
@@ -78,6 +83,57 @@ function facebookStrategy(token, refreshToken, profile, done) {
             }
         );
 }
+
+
+
+// function findAllFollowingForUser(req, res) {
+//     var userId = req.params['userId'];
+//     userModel
+//         .findAllFollowingForUser(userId)
+//         .then(function (following) {
+//             res.json(following);
+//         });
+// }
+
+
+
+function unfollowSeller(req, res) {
+    var sellerId = req.body.sellerId;
+    var userId = req.params.userId;
+    userModel
+        .unfollowSeller(userId, sellerId)
+        .then(function (status) {
+            res.json(status);
+        });
+}
+
+
+
+
+function followSeller(req, res) {
+    var sellerId = req.body.sellerId;
+    var userId = req.params.userId;
+    userModel
+        .followSeller(userId, sellerId)
+        .then(function (status) {
+            res.json(status);
+        });
+}
+
+
+
+function findFollowSellerById(req, res) {
+    var sellerId = req.body.sellerId;
+    var userId = req.params.userId;
+
+    userModel
+        .findFollowSellerById(userId, sellerId)
+        .then(function (user) {
+            res.json(user);
+        });
+}
+
+
 
 
 

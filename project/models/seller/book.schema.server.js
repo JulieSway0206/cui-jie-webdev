@@ -12,6 +12,7 @@ var bookSchema = mongoose.Schema({
     inventory: Number,
     price: String,
     photo: String,
+    authors: String,
     dateCreated: {type: Date, default: Date.now}
 }, {collection: "book"});
 bookSchema.plugin(regexSearch);

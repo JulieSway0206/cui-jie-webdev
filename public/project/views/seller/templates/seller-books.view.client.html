@@ -14,11 +14,11 @@
         </thead>
         <tbody>
         <tr  ng-repeat="book in model.books">
-            <td><img src={{book.photo}} alt="book cover" width="100" height="100"></td>
+            <td><img src="{{book.photo}}" alt="book cover" width="100" height="100"></td>
             <td>{{book.name}}</td>
             <td>
                 <a href="#!/seller/book/{{book._id}}">
-                    <scan class="glyphicon glyphicon-pencil"></scan>
+                    <span class="glyphicon glyphicon-pencil"></span>
                 </a>
             </td>
         </tr>

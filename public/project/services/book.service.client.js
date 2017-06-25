@@ -15,7 +15,6 @@
         this.createBook = createBook;
         this.updateBook = updateBook;
         this.findAllBooks = findAllBooks;
-        this.findAllBookWithKeyword = findAllBookWithKeyword;
         this.findBookByISBN = findBookByISBN;
         this.findBookByAuthor = findBookByAuthor;
         this.findBookByName = findBookByName;
@@ -38,21 +37,21 @@
 
 
         function findBookByISBN(isbn) {
-            return $http.get("/api/project/book?isbn=" + isbn)
+            return $http.get("/api/project/isbn/book?isbn=" + isbn)
                 .then(function (response) {
                     return response.data;
                 });
         }
 
         function findBookByAuthor(author) {
-            return $http.get("/api/project/book?author=" + author)
+            return $http.get("/api/project/author/book?author=" + author)
                 .then(function (response) {
                     return response.data;
                 });
         }
 
         function findBookByName(bookName) {
-            return $http.get("/api/project/book?bookName=" + bookName)
+            return $http.get("/api/project/name/book?bookName=" + bookName)
                 .then(function (response) {
                     return response.data;
                 });
@@ -61,12 +60,6 @@
 
 
 
-        function findAllBookWithKeyword(keyword) {
-            return $http.get("/api/project/book?searchText=" + keyword)
-                .then(function (response) {
-                    return response.data;
-                });
-        }
 
 
 

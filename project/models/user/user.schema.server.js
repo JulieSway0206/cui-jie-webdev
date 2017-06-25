@@ -16,6 +16,7 @@ var userSchema = mongoose.Schema({
         id:    String,
         token: String
     },
+    follows:[{type: mongoose.Schema.Types.ObjectId, ref: "UserModel"}],
     email: String,
     venmo: String,
     books: [{type: mongoose.Schema.Types.ObjectId, ref: "BookModel"}],

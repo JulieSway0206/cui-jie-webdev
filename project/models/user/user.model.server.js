@@ -22,11 +22,39 @@ userModel.deleteBook = deleteBook;
 userModel.findUserByFacebookId = findUserByFacebookId;
 userModel.addOrder = addOrder;
 userModel.deleteOrder = deleteOrder;
+userModel.findFollowSellerById = findFollowSellerById;
+userModel.followSeller = followSeller;
+userModel.unfollowSeller = unfollowSeller;
+
 
 module.exports = userModel;
 
 
 
+
+
+
+
+
+function unfollowSeller(userId, sellerId) {
+    return userModel.update({_id: userId}, {$pull: {follows: sellerId}});
+}
+
+
+
+function followSeller(userId, sellerId) {
+    return userModel.update({_id: userId}, {$push: {follows: sellerId}});
+}
+
+
+
+function findFollowSellerById(userId, sellerId) {
+
+    return userModel
+             .findOne({follows: sellerId, _id:userId});
+
+
+}
 
 
 function deleteOrder(orderId) {

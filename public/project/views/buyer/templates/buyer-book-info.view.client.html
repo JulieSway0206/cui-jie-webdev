@@ -85,10 +85,11 @@
     <h1 class="text-center">Seller's Introduction</h1>
 
 
-       <div>
-           <h3 style="color: #eea236">Seller: {{model.book._user.username}}</h3>
-       </div>
-
+    <div>
+        <h3 style="color: #eea236">Seller:
+            <a class="hover" style="font-size: 350%" href="#!/books/list/seller/{{model.book._user._id}}">{{model.book._user.username}}
+            </a>Check this Seller!!</h3>
+    </div>
     <div>
         <h3 style="color: #eea236">Seller's Venmo: {{model.book._user.venmo}}</h3>
     </div>

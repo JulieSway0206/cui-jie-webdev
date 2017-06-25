@@ -47,7 +47,7 @@
             bookService
                 .createBook(newBook, userId)
                 .then(function (book) {
-                    console.log(book);
+
                     var bookId = book._id;
 
                     $location.url('/seller/book/'+bookId);

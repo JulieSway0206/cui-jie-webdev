@@ -12,8 +12,9 @@ app.get("/api/project/book/:bookId", findBookById);
 app.put("/api/project/book/:bookId", updateBook);
 app.delete("/api/project/book/:bookId", deleteBook);
 app.get("/api/project/books", findAllBooks);
-// app.get("/api/project/book",findAllBookWithKeyword);
-app.get("/api/project/book", findBookByName);
+app.get("/api/project/name/book", findBookByName);
+app.get("/api/project/author/book", findBookByAuthor);
+app.get("/api/project/isbn/book", findBookByISBN);
 app.put("/api/project/book/inventory/:bookId", updateInventory);
 
 
@@ -29,26 +30,36 @@ function updateInventory(req, res) {
 }
 
 
-function findBookByName(req, res) {
-    var bookName = req.query['bookName'];
+function findBookByISBN(req, res) {
+    var isbn = req.query['isbn'];
     bookModel
-        .findBookByName(bookName)
+        .findBookByISBN(isbn)
         .then(function (books) {
-            console.log(books);
             res.json(books);
         });
 }
 
 
-// function findAllBookWithKeyword(req, res) {
-//     var keyword = req.query['searchText'];
-//     console.log(keyword);
-//     bookModel
-//         .findAllBookWithKeyword(keyword)
-//         .then(function (books) {
-//             res.json(books);
-//         });
-// }
+function findBookByName(req, res) {
+    var bookName = req.query['bookName'];
+    bookModel
+        .findBookByName(bookName)
+        .then(function (books) {
+            res.json(books);
+        });
+}
+
+
+function findBookByAuthor(req, res) {
+    var author = req.query['author'];
+    console.log(33+author);
+
+    bookModel
+        .findBookByAuthor(author)
+        .then(function (books) {
+            res.json(books);
+        });
+}
 
 function findAllBooks(req, res) {
     bookModel

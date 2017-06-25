@@ -12,7 +12,7 @@
 
 <div ng-include="'views/common/header-seller.view.client.html'"></div>
 
-<div class="container-fluid" ng-repeat="order in model.orders">
+<div class="container-fluid">
     <div style="margin-top: 5px" ng-show="model.message" class="alert alert-info">
         {{model.message}}
     </div>
@@ -27,8 +27,8 @@
         </tr>
         </thead>
         <tbody>
-        <tr >
-            <td class="hidden-xs"><img src={{order.photo}} alt="book cover" width="100" height="100"></td>
+        <tr ng-repeat="order in model.orders">
+            <td class="hidden-xs"><img src="{{order.photo}}" alt="book cover" width="100" height="100"></td>
             <td>{{order.name}}</td>
             <td>{{order.buyer}}</td>
             <td>{{order.quantity}}</td>
@@ -47,7 +47,7 @@
         </tr>
         </tbody>
     </table>
-    <div>
+    <div ng-repeat="order in model.orders">
         <h5>request message:</h5>
         <div style="font-size: 15px ;color:cornflowerblue; margin-bottom: 10px">{{order.message}}</div>
 

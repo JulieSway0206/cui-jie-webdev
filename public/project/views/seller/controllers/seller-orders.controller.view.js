@@ -35,8 +35,10 @@
                     orderService
                         .updateBOrder(borderId)
                         .then(function (status) {
-                            $location.url('/seller/orders');
-                            console.log(7);
+                            orderService
+                                .findAllOrdersForUser(model.userId)
+                                .then(renderOrders);
+
                         })
                 });
         }
@@ -58,7 +60,9 @@
                                orderService
                                    .acceptOrder(orderId, borderId)
                                    .then(function () {
-                                      $location.url('/seller/orders');
+                                       orderService
+                                           .findAllOrdersForUser(model.userId)
+                                           .then(renderOrders);
 
                                    });
 
@@ -84,21 +88,6 @@
             model.orders = orders;
         }
 
-        function createBook(userId) {
-            var newBook = {
-                name : '',
-                isbn : '',
-                description: ''
-            };
-            bookService
-                .createBook(newBook, userId)
-                .then(function (book) {
-                    console.log(book);
-                    var bookId = book._id;
-
-                    $location.url('/seller/book/'+bookId);
-                });
-        }
     }
 
 })();

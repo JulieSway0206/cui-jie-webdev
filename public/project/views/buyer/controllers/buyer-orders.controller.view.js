@@ -12,8 +12,8 @@
         model.userId = currentUser._id;//$routeParams['userId'];
         model.currentUser = currentUser;
         model.logout = logout;
-        model.acceptOrder = acceptOrder;
         model.deleteOrder = deleteOrder;
+        model.deleteBothOrder = deleteBothOrder;
 
         function init() {
             orderService
@@ -28,45 +28,35 @@
 
 
         
-        function deleteOrder(orderId, borderId) {
+        function deleteBothOrder(orderId, sorderId) {
             orderService
                 .deleteOrder(orderId)
                 .then(function () {
                     orderService
-                        .updateBOrder(borderId)
-                        .then(function (status) {
-                            $location.url('/seller/orders');
-                            console.log(7);
-                        })
+                        .deleteOrder(sorderId)
+                        .then(function () {
+                            orderService
+                                .findAllOrdersForUser(model.userId)
+                                .then(renderOrders);
+                        });
                 });
         }
-        
-        
-        
-        
-        function acceptOrder(orderId, quantity, bookId) {
-           bookService
-               .findBookById(bookId)
-               .then(function (book) {
-                   if(book.inventory < quantity){
-                       model.message = "Sorry, upload more books on your inventory!!"
-                   } else {
-                       var number = book.inventory - quantity;
-                       bookService
-                           .updateInventory(bookId, number)
-                           .then(function () {
-                               orderService
-                                   .acceptOrder(orderId)
-                                   .then(function () {
-                                      $location.url('/seller/orders');
 
-                                   });
 
-                           });
-                   }
 
-                   });
+        function deleteOrder(orderId) {
+            orderService
+                .deleteOrder(orderId)
+                .then(function () {
+                    orderService
+                        .findAllOrdersForUser(model.userId)
+                        .then(renderOrders);
+              });
         }
+        
+        
+        
+        
 
 
 
@@ -84,21 +74,6 @@
             model.orders = orders;
         }
 
-        function createBook(userId) {
-            var newBook = {
-                name : '',
-                isbn : '',
-                description: ''
-            };
-            bookService
-                .createBook(newBook, userId)
-                .then(function (book) {
-                    console.log(book);
-                    var bookId = book._id;
-
-                    $location.url('/seller/book/'+bookId);
-                });
-        }
     }
 
 })();
