@@ -22,11 +22,16 @@
                   .login(username, password)
                   .then(login, loginError);
               function login(user) {
+
                   if (user) {
                       if(user.roles[0] === "BUYER"){
                       $location.url('/profile/buyer');}
-                      else{
+                      else if(user.roles[0] === "SELLER"){
                           $location.url('/profile/seller');
+
+                      } else {
+
+                          $location.url('/manage');
                       }
                   } else {
                       model.message = "Sorry, " + username + " not found. Please try again!";

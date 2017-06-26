@@ -19,9 +19,19 @@ bookModel.findBookByAuthor = findBookByAuthor;
 bookModel.findBookByName = findBookByName;
 bookModel.updateInventory = updateInventory;
 bookModel.findBookByISBN = findBookByISBN;
+bookModel.adminDelete = adminDelete;
 
 module.exports = bookModel;
 
+
+
+
+
+function adminDelete(userId) {
+    return bookModel
+        .remove({_user: userId});
+
+}
 
 
 function updateInventory(bookId, quantity) {

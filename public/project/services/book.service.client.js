@@ -19,10 +19,22 @@
         this.findBookByAuthor = findBookByAuthor;
         this.findBookByName = findBookByName;
         this.updateInventory = updateInventory;
+        this.adminDelete = adminDelete;
 
 
 
 
+
+
+
+
+        function adminDelete(userId) {
+            var url = "/api/project/admin/user/"+userId;
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
 
 
         function updateInventory(bookId, quantity) {

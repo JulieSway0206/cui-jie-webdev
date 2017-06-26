@@ -40,6 +40,22 @@
                          currentUser: checkLoggedIn
                      }
                  })
+                 .when('/manage', {
+                     templateUrl: 'views/admin/templates/admin.view.client.html',
+                     controller: 'mainController',
+                     controllerAs: 'model',
+                     resolve:{
+                         currentUser: checkLoggedIn
+                     }
+                 })
+                 .when('/admin/user', {
+                     templateUrl: 'views/admin/templates/admin-users.view.client.html',
+                     controller: 'adminUsersController',
+                     controllerAs: 'model',
+                     resolve:{
+                         currentUser: checkLoggedIn
+                     }
+                 })
                  .when('/home/books', {
                      templateUrl: 'views/books/templates/books.html',
                      controller: 'booksSearchController',

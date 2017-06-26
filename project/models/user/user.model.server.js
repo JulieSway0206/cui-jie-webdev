@@ -113,16 +113,18 @@ function addBook(userId, bookId) {
 
 
 function createUser(user) {
+    console.log(user);
     if(user.roles){
         user.roles = user.roles.split(',');
     } else {
-        user.roles = ['USER'];
+        user.roles = ['BUYER'];
     }
         return userModel.create(user);
 
 
 }
 function createGoogleUser(user) {
+    user.roles = 'BUYER';
     return userModel.create(user);
 
 
