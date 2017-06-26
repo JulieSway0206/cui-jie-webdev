@@ -17,9 +17,21 @@ app.get("/api/project/author/book", findBookByAuthor);
 app.get("/api/project/isbn/book", findBookByISBN);
 app.put("/api/project/book/inventory/:bookId", updateInventory);
 app.get("/api/project/admin/user/:userId", adminDelete);
+app.put("/api/project/admin/book/:bookId", adminUpdate);
 
 
 
+
+
+function adminUpdate(req, res) {
+    var bookId = req.params.bookId;
+    var book = req.body;
+    bookModel
+        .adminUpdate(bookId, book)
+        .then(function (status) {
+            res.send(status);
+        });
+}
 
 function adminDelete(req, res) {
     var userId = req.params.userId;

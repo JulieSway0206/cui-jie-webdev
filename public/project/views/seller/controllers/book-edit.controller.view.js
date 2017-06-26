@@ -45,6 +45,28 @@
 
 
         function updateBook(bookId, newBook) {
+            if (newBook.isbn === null || newBook.isbn  === '' || typeof newBook.isbn  === 'undefined') {
+                model.error1 = 'ISBN is required!!';
+                model.error2 = null;
+                model.error3 = null;
+                model.submitted1 = true;
+                return;
+            }
+
+            if (newBook.inventory === null || newBook.inventory === '' || typeof newBook.inventory === 'undefined') {
+                model.error1 = null;
+                model.error2 = 'Inventory is required!';
+                model.error3 = null;
+                model.submitted2 = true;
+                return;
+            }
+            if (newBook.price === null || newBook.price === '' || typeof newBook.price === 'undefined') {
+                model.error1 = null;
+                model.error2 = null;
+                model.error3 = 'Price is required!';
+                model.submitted3 = true;
+                return;
+            }
             var isbn = newBook.isbn;
             searchService
                 .searchBook(isbn)

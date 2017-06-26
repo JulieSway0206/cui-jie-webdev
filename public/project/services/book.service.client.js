@@ -20,6 +20,7 @@
         this.findBookByName = findBookByName;
         this.updateInventory = updateInventory;
         this.adminDelete = adminDelete;
+        this.adminUpdate = adminUpdate;
 
 
 
@@ -27,6 +28,17 @@
 
 
 
+
+
+
+
+        function adminUpdate(bookId, book) {
+            var url = "/api/project/admin/book/" + bookId;
+            return $http.put(url, book)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
 
         function adminDelete(userId) {
             var url = "/api/project/admin/user/"+userId;

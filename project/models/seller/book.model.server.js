@@ -20,11 +20,32 @@ bookModel.findBookByName = findBookByName;
 bookModel.updateInventory = updateInventory;
 bookModel.findBookByISBN = findBookByISBN;
 bookModel.adminDelete = adminDelete;
+bookModel.adminUpdate = adminUpdate;
 
 module.exports = bookModel;
 
 
 
+
+function adminUpdate(bookId, newBook) {
+    return bookModel.findBookById(bookId)
+                    .then(function (book) {
+                        if(newBook._user.username !== book._user.username){
+                           return userModel.userBookUpdate(newBook._user.username, book._user.username, bookId)
+                               .then(function (status) {
+                                   return bookModel.update({_id: bookId}, {$set: newBook})
+                                       .then(function (status) {
+                                           return userModel.findUserByUsername(newBook._user.username)
+                                               .then(function (user) {
+                                                   return bookModel.update({_id: bookId}, {$set: {_user:user._id}})
+                                               });
+                                       });
+                               });
+                        } else{
+                            return bookModel.update({_id: bookId}, {$set: newBook});
+                        }
+                    });
+}
 
 
 function adminDelete(userId) {

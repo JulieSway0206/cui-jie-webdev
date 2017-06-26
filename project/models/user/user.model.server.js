@@ -26,6 +26,7 @@ userModel.findFollowSellerById = findFollowSellerById;
 userModel.followSeller = followSeller;
 userModel.unfollowSeller = unfollowSeller;
 userModel.createGoogleUser = createGoogleUser;
+userModel.userBookUpdate = userBookUpdate;
 
 
 module.exports = userModel;
@@ -34,7 +35,12 @@ module.exports = userModel;
 
 
 
-
+function userBookUpdate(newUser, oldUser, bookId) {
+    return userModel.update({username: newUser}, {$push: {books: bookId}})
+                    .then(function (status) {
+                       return userModel.update({username: oldUser}, {$pull: {books: bookId}});
+                    })
+}
 
 
 function unfollowSeller(userId, sellerId) {
