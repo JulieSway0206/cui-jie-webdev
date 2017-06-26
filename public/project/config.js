@@ -64,6 +64,14 @@
                          currentUser: checkLoggedIn
                      }
                  })
+                 .when('/admin/following', {
+                     templateUrl: 'views/admin/templates/admin-following.view.client.html',
+                     controller: 'adminFollowingController',
+                     controllerAs: 'model',
+                     resolve:{
+                         currentUser: checkLoggedIn
+                     }
+                 })
                  .when('/home/books', {
                      templateUrl: 'views/books/templates/books.html',
                      controller: 'booksSearchController',

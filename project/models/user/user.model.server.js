@@ -27,12 +27,19 @@ userModel.followSeller = followSeller;
 userModel.unfollowSeller = unfollowSeller;
 userModel.createGoogleUser = createGoogleUser;
 userModel.userBookUpdate = userBookUpdate;
+userModel.findBuyer = findBuyer;
 
 
 module.exports = userModel;
 
 
 
+
+function findBuyer(userId) {
+    return userModel.findById(userId)
+                    .populate('follows')
+                    .exec();
+}
 
 
 function userBookUpdate(newUser, oldUser, bookId) {

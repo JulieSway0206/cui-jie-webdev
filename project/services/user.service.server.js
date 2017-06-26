@@ -32,7 +32,7 @@ app.post('/api/project/unregister', unregister);
 app.post('/api/project/follow/user/:userId', findFollowSellerById );
 app.put('/api/project/followseller/user/:userId', followSeller);
 app.put('/api/project/unfollowseller/user/:userId', unfollowSeller);
-
+app.get('/api/project/admin/buyer/user/:userId', findBuyer);
 
 
 app.get('/auth/google', passport.authenticate('google', { scope : ['profile','email'] }));
@@ -86,6 +86,19 @@ function googleStrategy(token, refreshToken, profile, done) {
 }
 
 
+
+
+
+
+
+function findBuyer(req, res) {
+    var userId = req.params['userId'];
+    userModel
+        .findBuyer(userId)
+        .then(function (buyer) {
+            res.json(buyer);
+        });
+}
 
 
 function unfollowSeller(req, res) {

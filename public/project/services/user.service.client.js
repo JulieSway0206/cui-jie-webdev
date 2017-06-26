@@ -29,7 +29,7 @@
             findFollowSellerById: findFollowSellerById,
             followSeller: followSeller,
             unfollowSeller: unfollowSeller,
-            // findAllFollowingForUser:findAllFollowingForUser
+            findBuyer: findBuyer
         };
         return api;
 
@@ -38,14 +38,13 @@
 
 
 
-        //
-        // function findAllFollowingForUser(userId) {
-        //     var url = "/api/project/following/user/"+userId;
-        //     return $http.get(url)
-        //         .then(function (response) {
-        //             return response.data;
-        //         });
-        // }
+       function findBuyer(userId) {
+           var url = "/api/project/admin/buyer/user/"+userId;
+           return $http.get(url)
+               .then(function (response) {
+                   return response.data;
+               });
+       }
 
 
         function unfollowSeller(userId, sellerId) {
