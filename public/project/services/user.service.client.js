@@ -29,16 +29,36 @@
             findFollowSellerById: findFollowSellerById,
             followSeller: followSeller,
             unfollowSeller: unfollowSeller,
-            findBuyer: findBuyer
+            findBuyer: findBuyer,
+            findBuyerForOrderAdmin: findBuyerForOrderAdmin,
+            findSellerForOrderAdmin: findSellerForOrderAdmin
         };
         return api;
 
 
 
 
+        function findSellerForOrderAdmin(userId) {
+            var url = "/api/project/admin/seller/order/"+userId;
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
 
 
-       function findBuyer(userId) {
+
+        function findBuyerForOrderAdmin(userId) {
+            var url = "/api/project/admin/order/"+userId;
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+
+
+        function findBuyer(userId) {
            var url = "/api/project/admin/buyer/user/"+userId;
            return $http.get(url)
                .then(function (response) {

@@ -7,6 +7,7 @@ var mongoose = require('mongoose');
 var userSchema = require('./user.schema.server');
 
 var userModel = mongoose.model('UserModel', userSchema);
+// var orderModel = require('../buyer/order.model.server');
 
 
 
@@ -28,10 +29,30 @@ userModel.unfollowSeller = unfollowSeller;
 userModel.createGoogleUser = createGoogleUser;
 userModel.userBookUpdate = userBookUpdate;
 userModel.findBuyer = findBuyer;
-
+userModel.findBuyerForOrderAdmin = findBuyerForOrderAdmin;
+userModel.findSellerForOrderAdmin = findSellerForOrderAdmin;
 
 module.exports = userModel;
 
+
+
+
+
+
+function findSellerForOrderAdmin(userId) {
+    return userModel.findById(userId)
+        .populate('books')
+        .exec();
+}
+
+
+
+
+function findBuyerForOrderAdmin(userId) {
+    return userModel.findById(userId)
+        .populate('orders')
+        .exec();
+}
 
 
 

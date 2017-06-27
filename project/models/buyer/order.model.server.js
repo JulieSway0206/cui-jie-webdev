@@ -3,7 +3,7 @@
  */
 var mongoose = require('mongoose');
 var orderSchema = require('./order.schema.server');
-var orderModel = mongoose.model('orderModel', orderSchema);
+var orderModel = mongoose.model('OrderModel', orderSchema);
 var userModel = require('../user/user.model.server');
 
 //api

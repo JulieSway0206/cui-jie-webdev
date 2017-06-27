@@ -20,7 +20,7 @@ var userSchema = mongoose.Schema({
     email: String,
     venmo: String,
     books: [{type: mongoose.Schema.Types.ObjectId, ref: "BookModel"}],
-    orders: [{type: mongoose.Schema.ObjectId, ref: "OderModel"}],
+    orders: [{type: mongoose.Schema.ObjectId, ref: "OrderModel"}],
     dateCreated: {type: Date, default: Date.now}
 }, {collection: "user"});
 // anybody who require this file gonna get userSchema instanceo
