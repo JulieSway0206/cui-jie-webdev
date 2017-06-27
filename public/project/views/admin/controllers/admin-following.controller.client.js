@@ -14,7 +14,6 @@
         model.followSeller = followSeller;
         model.unfollowSeller = unfollowSeller;
         model.findAllUsers = findAllUsers;
-        model.createUser = createUser;
         model.currentUser = currentUser;
         model.logout = logout;
 
@@ -44,19 +43,8 @@
         }
 
 
-        function updateUser(user) {
-            console.log(user);
-            userService
-                .updateUser(user._id, user)
-                .then(findAllUsers);
-        }
 
 
-        function createUser(user) {
-            userService
-                .createUser(user)
-                .then(findAllUsers);
-        }
 
         function init() {
             findAllUsers();
