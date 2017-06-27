@@ -192,6 +192,14 @@
                          currentUser: checkLoggedIn
                      }
                  })
+                 .when('/seller/orders/message/:orderId',{
+                     templateUrl: 'views/seller/templates/seller-orders-message.view.client.html',
+                     controller:'sellerOrdersMessageController',
+                     controllerAs: 'model',
+                     resolve:{
+                         currentUser: checkLoggedIn
+                     }
+                 })
                  .when('/buyer/orders',{
                      templateUrl: 'views/buyer/templates/buyer-orders.view.client.html',
                      controller:'buyerOrdersController',

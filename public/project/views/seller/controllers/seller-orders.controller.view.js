@@ -15,6 +15,7 @@
         model.acceptOrder = acceptOrder;
         model.deleteOrder = deleteOrder;
 
+
         function init() {
             orderService
                          .findAllOrdersForUser(model.userId)
@@ -27,7 +28,6 @@
 
 
 
-        
         function deleteOrder(orderId, borderId) {
             orderService
                 .deleteOrder(orderId)
