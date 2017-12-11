@@ -57,13 +57,13 @@
                     var buyers = [];
                     var sellers = [];
                     for(var u =0; u<users.length;u++){
-                        if(users[u].roles[0] === 'BUYER'){
+                        if(users[u].roles[0] === 'BORROWER'){
                             userService
                                 .findBuyer(users[u]._id)
                                 .then(function (buyer) {
                                     buyers.push(buyer);
                                 });
-                        } else if(users[u].roles[0] === 'SELLER'){
+                        } else if(users[u].roles[0] === 'LENDER'){
                             sellers.push(users[u]);
                         }
                     }

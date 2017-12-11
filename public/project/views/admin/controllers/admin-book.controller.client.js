@@ -6,7 +6,7 @@
         .module('BookAppMaker')
         .controller('adminBooksController', adminBooksController);
 
-    function adminBooksController(userService, currentUser,$location, bookService) {
+    function adminBooksController(userService, currentUser,$location, bookService, shelfService) {
         var model = this;
         model.deleteBook = deleteBook;
         model.findAllBooks = findAllBooks;
@@ -40,13 +40,35 @@
 
 
         function createBook(book) {
-            userService
-                .findUserByUsername(book._user.username)
-                .then(function (user) {
-                    bookService
-                        .createBook(book, user._id)
-                        .then(findAllBooks);
-                });
+         shelfService
+             .findShelfByName(book.shelf.name)
+             .then(function (shelf) {
+                 console.log(book);
+                 bookService
+                     .createBook(book, shelf._id)
+                     .then(function (book) {
+                         var isbn = book.isbn;
+                         searchService
+                             .searchBook(isbn)
+                             .then(function (response) {
+                                 var item = response.data.items[0].volumeInfo;
+                                 var book = {
+                                     name: item.title,
+                                     photo: item.imageLinks.smallThumbnail,
+                                     description: newBook.description,
+                                     isbn: newBook.isbn,
+                                     _user: model.userId,
+                                     authors: item.authors[0]+item.authors[1]
+                                 };
+                                 bookService
+                                     .updateBook(book._id, book)
+                                     .then(findAllBooks);
+                             }, function (err) {
+                                 model.message = "Sorry, we cannot find this book!"
+                             });
+                     });
+             });
+
         }
 
         function deleteBook(book) {

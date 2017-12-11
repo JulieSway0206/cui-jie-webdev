@@ -47,18 +47,18 @@
                 </div>
                 <div class="gender">
                         <input type="radio"
-                               value="BUYER"
+                               value="BORROWER"
                                id="buyer"
                                ng-model="role"
                                name="gender" checked />
-                        <label for="buyer" class="radio">Buyer</label>
+                        <label for="buyer" class="radio">Borrower</label>
                         <input type="radio"
-                               value="SELLER"
+                               value="LENDER"
                                id="seller"
                                ng-model="role"
                                ng-class="{submitted:model.submitted4}"
                                name="gender" />
-                        <label for="seller" class="radio">Seller</label>
+                        <label for="seller" class="radio">Lender</label>
                         <div ng-show="model.error5" class="alert alert-danger">
                                 {{model.error5}}
                         </div>

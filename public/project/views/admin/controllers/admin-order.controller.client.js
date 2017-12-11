@@ -121,13 +121,13 @@
                     var sellers = [];
                     var books = [];
                     for(var u =0; u<users.length;u++){
-                        if(users[u].roles[0] === 'BUYER'){
+                        if(users[u].roles[0] === 'BORROWER'){
                             userService
                                 .findBuyerForOrderAdmin(users[u]._id)
                                 .then(function (buyer) {
                                     buyers.push(buyer);
                                 });
-                        } else if(users[u].roles[0] === 'SELLER'){
+                        } else if(users[u].roles[0] === 'LENDER'){
 
                             userService
                                 .findSellerForOrderAdmin(users[u]._id)

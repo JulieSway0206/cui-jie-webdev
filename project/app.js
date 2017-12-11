@@ -24,3 +24,4 @@ mongoose.connect(connectionString);
 require('./services/user.service.server');
 require('./services/book.service.server');
 require('./services/order.service.server');
+require('./services/shelf.service.server');

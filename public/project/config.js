@@ -16,7 +16,7 @@
                          currentUser: checkCurrentUser
                      }
                  })
-                 .when('/seller/home', {
+                 .when('/lender/home', {
                      templateUrl: 'views/home/templates/seller-home.html',
                      controller: 'mainController',
                      controllerAs: 'model',
@@ -24,7 +24,7 @@
                          currentUser: checkLoggedIn
                      }
                  })
-                 .when('/buyer/home', {
+                 .when('/borrower/home', {
                      templateUrl: 'views/home/templates/buyer-home.html',
                      controller: 'mainController',
                      controllerAs: 'model',
@@ -64,6 +64,14 @@
                          currentUser: checkLoggedIn
                      }
                  })
+                 .when('/admin/shelves', {
+                     templateUrl: 'views/admin/templates/admin-shelves.view.client.html',
+                     controller: 'adminShelvesController',
+                     controllerAs: 'model',
+                     resolve:{
+                         currentUser: checkLoggedIn
+                     }
+                 })
                  .when('/admin/following', {
                      templateUrl: 'views/admin/templates/admin-following.view.client.html',
                      controller: 'adminFollowingController',
@@ -88,32 +96,56 @@
                          currentUser: checkCurrentUser
                      }
                  })
-                 .when('/books/list/seller/:sellerId', {
-                     templateUrl: 'views/buyer/templates/buyer-seller-books.view.client.html',
+                 .when('/books/list/lender/:lenderId', {
+                     templateUrl: 'views/borrower/templates/borrower-lender-books.view.client.html',
                      controller: 'sellerBooksListController',
                      controllerAs: 'model',
                      resolve:{
                          currentUser: checkLoggedIn
                      }
                  })
-                 .when('/buyer/following', {
-                     templateUrl: 'views/buyer/templates/buyer-following.view.client.html',
+                 .when('/borrower/following', {
+                     templateUrl: 'views/borrower/templates/borrower-following.view.client.html',
                      controller: 'buyerFollowingController',
                      controllerAs: 'model',
                      resolve:{
                          currentUser: checkLoggedIn
                      }
                  })
-                 .when('/buyer/books', {
-                     templateUrl: 'views/buyer/templates/buyer-books.view.client.html',
+                 .when('/borrower/books', {
+                     templateUrl: 'views/borrower/templates/borrower-books.view.client.html',
                      controller: 'booksSearchController',
                      controllerAs: 'model',
                      resolve:{
                          currentUser: checkLoggedIn
                      }
                  })
-                 .when('/seller/header/books', {
-                     templateUrl: 'views/seller/templates/seller-books-header.view.client.html',
+                 .when('/lender/followers', {
+                     templateUrl: 'views/lender/templates/lender-followers.view.client.html',
+                     controller: 'lenderFollowerController',
+                     controllerAs: 'model',
+                     resolve:{
+                         currentUser: checkLoggedIn
+                     }
+                 })
+                 .when('/lender/shelves', {
+                     templateUrl: 'views/lender/templates/lender-shelves.view.client.html',
+                     controller: 'lenderShelfController',
+                     controllerAs: 'model',
+                     resolve:{
+                         currentUser: checkLoggedIn
+                     }
+                 })
+                 .when('/lender/shelf/edit/:shelfId', {
+                     templateUrl: 'views/lender/templates/shelf-edit.view.client.html',
+                     controller: 'shelfController',
+                     controllerAs: 'model',
+                     resolve:{
+                         currentUser: checkLoggedIn
+                     }
+                 })
+                 .when('/lender/header/books', {
+                     templateUrl: 'views/lender/templates/lender-books-header.view.client.html',
                      controller: 'booksSearchController',
                      controllerAs: 'model',
                      resolve:{
@@ -129,16 +161,16 @@
                          currentUser: checkCurrentUser
                      }
                  })
-                 .when('/buyer/books/:bookId', {
-                     templateUrl: 'views/buyer/templates/buyer-book-info.view.client.html',
+                 .when('/borrower/books/:bookId', {
+                     templateUrl: 'views/borrower/templates/borrower-book-info.view.client.html',
                      controller: 'bookInfoController',
                      controllerAs: 'model',
                      resolve:{
                          currentUser: checkLoggedIn
                      }
                  })
-                 .when('/seller/books/:bookId', {
-                     templateUrl: 'views/seller/templates/seller-book-info.view.client.html',
+                 .when('/lender/books/:shelfId/:bookId', {
+                     templateUrl: 'views/lender/templates/lender-book-info.view.client.html',
                      controller: 'bookInfoController',
                      controllerAs: 'model',
                      resolve:{
@@ -167,16 +199,16 @@
                      controllerAs: 'model'
                  })
 
-                 .when('/profile/buyer',{
-                     templateUrl: 'views/buyer/templates/buyer-profile.view.client.html',
+                 .when('/profile/borrower',{
+                     templateUrl: 'views/borrower/templates/borrower-profile.view.client.html',
                      controller:'profileController',
                      controllerAs: 'model',
                      resolve:{
                          currentUser: checkLoggedIn
                      }
                  })
-                 .when('/profile/seller',{
-                     templateUrl: 'views/seller/templates/seller-profile.view.client.html',
+                 .when('/profile/lender',{
+                     templateUrl: 'views/lender/templates/lender-profile.view.client.html',
                      controller:'profileController',
                      controllerAs: 'model',
                      resolve:{
@@ -184,40 +216,40 @@
                      }
                  })
 
-                 .when('/seller/books',{
-                     templateUrl: 'views/seller/templates/seller-books.view.client.html',
+                 .when('/lender/shelf/books/:shelfId',{
+                     templateUrl: 'views/lender/templates/lender-books.view.client.html',
                      controller:'sellerBooksController',
                      controllerAs: 'model',
                      resolve:{
                          currentUser: checkLoggedIn
                      }
                  })
-                 .when('/seller/orders',{
-                     templateUrl: 'views/seller/templates/seller-orders.view.client.html',
+                 .when('/lender/orders',{
+                     templateUrl: 'views/lender/templates/lender-orders.view.client.html',
                      controller:'sellerOrdersController',
                      controllerAs: 'model',
                      resolve:{
                          currentUser: checkLoggedIn
                      }
                  })
-                 .when('/seller/orders/message/:orderId',{
-                     templateUrl: 'views/seller/templates/seller-orders-message.view.client.html',
+                 .when('/lender/orders/message/:orderId',{
+                     templateUrl: 'views/lender/templates/lender-orders-message.view.client.html',
                      controller:'sellerOrdersMessageController',
                      controllerAs: 'model',
                      resolve:{
                          currentUser: checkLoggedIn
                      }
                  })
-                 .when('/buyer/orders',{
-                     templateUrl: 'views/buyer/templates/buyer-orders.view.client.html',
+                 .when('/borrower/orders',{
+                     templateUrl: 'views/borrower/templates/borrower-orders.view.client.html',
                      controller:'buyerOrdersController',
                      controllerAs: 'model',
                      resolve:{
                          currentUser: checkLoggedIn
                      }
                  })
-                 .when('/seller/book/:bookId',{
-                     templateUrl: 'views/seller/templates/book-edit.view.client.html',
+                 .when('/lender/book/:shelfId/:bookId',{
+                     templateUrl: 'views/lender/templates/book-edit.view.client.html',
                      controller: 'bookEditController',
                      controllerAs: 'model',
                      resolve:{

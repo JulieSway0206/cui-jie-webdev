@@ -24,10 +24,10 @@
               function login(user) {
 
                   if (user) {
-                      if(user.roles[0] === "BUYER"){
-                      $location.url('/profile/buyer');}
-                      else if(user.roles[0] === "SELLER"){
-                          $location.url('/profile/seller');
+                      if(user.roles[0] === "BORROWER"){
+                      $location.url('/profile/borrower');}
+                      else if(user.roles[0] === "LENDER"){
+                          $location.url('/profile/lender');
 
                       } else {
 

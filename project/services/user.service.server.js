@@ -7,46 +7,46 @@ passport.use(new LocalStrategy(localStrategy));
 passport.serializeUser(serializeUser);
 passport.deserializeUser(deserializeUser);
 
-var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
-var googleConfig = {
-    clientID     : process.env.GOOGLE_CLIENT_ID,
-    clientSecret : process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL  : process.env.GOOGLE_CALLBACK_URL,
-    profileFields: ['email']
-};
-passport.use(new GoogleStrategy(googleConfig, googleStrategy));
+// var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+// var googleConfig = {
+//     clientID     : process.env.GOOGLE_CLIENT_ID,
+//     clientSecret : process.env.GOOGLE_CLIENT_SECRET,
+//     callbackURL  : process.env.GOOGLE_CALLBACK_URL,
+//     profileFields: ['email']
+// };
+// passport.use(new GoogleStrategy(googleConfig, googleStrategy));
 
-app.get('/api/project/user/:userId', findUserById);
-app.get    ('/api/project/user', findUser);
-app.get    ('/api/project/users', isAdmin, findAllUsers);
-app.post('/api/project/user',isAdmin, createUser);
-app.put('/api/project/user/:userId', updateUser);
-app.delete('/api/project/user/:userId', isAdmin, deleteUser);
+app.get('/api/dbproject/user/:userId', findUserById);
+app.get    ('/api/dbproject/user', findUser);
+app.get    ('/api/dbproject/users', isAdmin, findAllUsers);
+app.post('/api/dbproject/user',isAdmin, createUser);
+app.put('/api/dbproject/user/:userId', updateUser);
+app.delete('/api/dbproject/user/:userId', isAdmin, deleteUser);
 
-app.post('/api/project/login', passport.authenticate('local'), login);
-app.get('/api/project/checkLoggedIn', checkLoggedIn);
-app.post('/api/project/logout', logout);
-app.post('/api/project/register', register);
-app.get('/api/project/checkAdmin', checkAdmin );
-app.post('/api/project/unregister', unregister);
-app.post('/api/project/follow/user/:userId', findFollowSellerById );
-app.put('/api/project/followseller/user/:userId', followSeller);
-app.put('/api/project/unfollowseller/user/:userId', unfollowSeller);
-app.get('/api/project/admin/buyer/user/:userId', findBuyer);
-app.get('/api/project/admin/order/:userId', findBuyerForOrderAdmin);
-app.get('/api/project/admin/seller/order/:userId', findSellerForOrderAdmin);
+app.post('/api/dbproject/login', passport.authenticate('local'), login);
+app.get('/api/dbproject/checkLoggedIn', checkLoggedIn);
+app.post('/api/dbproject/logout', logout);
+app.post('/api/dbproject/register', register);
+app.get('/api/dbproject/checkAdmin', checkAdmin );
+app.post('/api/dbproject/unregister', unregister);
+app.post('/api/dbproject/follow/user/:userId', findFollowSellerById );
+app.put('/api/dbproject/followseller/user/:userId', followSeller);
+app.put('/api/dbproject/unfollowseller/user/:userId', unfollowSeller);
+app.get('/api/dbproject/admin/borrower/user/:userId', findBuyer);
+app.get('/api/dbproject/admin/order/:userId', findBuyerForOrderAdmin);
+app.get('/api/dbproject/admin/lender/order/:userId', findSellerForOrderAdmin);
 
 
-app.get('/auth/google', passport.authenticate('google', { scope : ['profile','email'] }));
+// app.get('/auth/google', passport.authenticate('google', { scope : ['profile','email'] }));
 //from client to facebook
 
 //coming back from facebook
 
-app.get('/auth/google/callback',
-    passport.authenticate('google', {
-        successRedirect: '/project/index.html#!/profile/buyer',
-        failureRedirect: '/project/index.html#!/login'
-    }));
+// app.get('/auth/google/callback',
+//     passport.authenticate('google', {
+//         successRedirect: '/dbproject/index.html#!/profile/borrower',
+//         failureRedirect: '/dbproject/index.html#!/login'
+//     }));
 
 
 

@@ -3,18 +3,18 @@
  */
 
 var app = require('../../express');
-var orderModel = require('../models/buyer/order.model.server');
+var orderModel = require('../models/borrower/order.model.server');
 
 
-app.get("/api/project/user/:userId/order", findAllOrdersForUser);
-app.post("/api/project/user/:userId/order", createOrder);
-app.get("/api/project/order/:orderId", findOrderById);
-app.put("/api/project/order/:orderId", updateOrder);
-app.delete("/api/project/order/:orderId", deleteOrder);
-app.get("/api/project/orders", findAllOrders);
-app.put("/api/project/accept/order/:orderId", acceptOrder);
-app.put("/api/project/buyer/order/:orderId", updateBuyerOrder);
-app.put("/api/project/reject/order/:orderId", updateBOrder);
+app.get("/api/dbproject/user/:userId/order", findAllOrdersForUser);
+app.post("/api/dbproject/user/:userId/order", createOrder);
+app.get("/api/dbproject/order/:orderId", findOrderById);
+app.put("/api/dbproject/order/:orderId", updateOrder);
+app.delete("/api/dbproject/order/:orderId", deleteOrder);
+app.get("/api/dbproject/orders", findAllOrders);
+app.put("/api/dbproject/accept/order/:orderId", acceptOrder);
+app.put("/api/dbproject/borrower/order/:orderId", updateBuyerOrder);
+app.put("/api/dbproject/reject/order/:orderId", updateBOrder);
 
 
 

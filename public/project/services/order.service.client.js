@@ -25,7 +25,7 @@
 
 
         function updateBOrder(borderId) {
-            var url = "/api/project/reject/order/" + borderId;
+            var url = "/api/dbproject/reject/order/" + borderId;
             return $http.put(url)
                 .then(function (response) {
                     return response.data;
@@ -35,7 +35,7 @@
 
 
         function updateBuyerOrder(buyerOrderId, sellerOrderId) {
-            var url = "/api/project/buyer/order/" + buyerOrderId;
+            var url = "/api/dbproject/borrower/order/" + buyerOrderId;
             var sellerOrder = {sorderId: sellerOrderId};
             return $http.put(url, sellerOrder)
                 .then(function (response) {
@@ -45,7 +45,7 @@
 
 
         function acceptOrder(orderId, borderId) {
-            var url = "/api/project/accept/order/" + orderId;
+            var url = "/api/dbproject/accept/order/" + orderId;
             var borderId = {borderId: borderId};
             return $http.put(url, borderId)
                 .then(function (response) {
@@ -55,7 +55,7 @@
 
 
         function findAllOrders() {
-            var url = "/api/project/orders";
+            var url = "/api/dbproject/orders";
             return $http.get(url)
                 .then(function (response) {
                     return response.data;
@@ -65,7 +65,7 @@
 
 
         function updateOrder (orderId, order) {
-            var url = "/api/project/order/" + orderId;
+            var url = "/api/dbproject/order/" + orderId;
             return $http.put(url, order)
                         .then(function (response) {
                             return response.data;
@@ -73,7 +73,7 @@
         }
 
         function createOrder(order, userId){
-            var url = "/api/project/user/"+userId+"/order";
+            var url = "/api/dbproject/user/"+userId+"/order";
             return $http
                         .post(url, order)
                         .then(function (response) {
@@ -84,7 +84,7 @@
 
 
         function deleteOrder(orderId) {
-            var url = "/api/project/order/" + orderId;
+            var url = "/api/dbproject/order/" + orderId;
             return $http.delete(url)
                         .then(function (response) {
                             return response.data;
@@ -94,7 +94,7 @@
 
 
         function findOrderById(orderId) {
-            var url = " /api/project/order/" + orderId;
+            var url = " /api/dbproject/order/" + orderId;
             return $http.get(url)
                         .then(function (response) {
                             return response.data;
@@ -102,7 +102,7 @@
         }
 
         function findAllOrdersForUser(userId) {
-            var url = "/api/project/user/"+userId+"/order";
+            var url = "/api/dbproject/user/"+userId+"/order";
             return $http.get(url)
                 .then(function (response) {
                     return response.data;

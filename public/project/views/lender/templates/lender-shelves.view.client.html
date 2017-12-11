@@ -1,0 +1,27 @@
+
+
+
+<div ng-include="'views/common/header-seller.view.client.html'"></div>
+<div class="container-fluid">
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Books</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr  ng-repeat="shelf in model.shelves">
+            <td>{{shelf.name}}</td>
+            <td>
+                <a href="#!/lender/shelf/edit/{{shelf._id}}">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a class="btn btn-block btn-success"
+       ng-click="model.createShelf(model.userId)">New Shelves</a>
+</div>

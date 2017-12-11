@@ -1,0 +1,43 @@
+
+
+<style>
+    body {
+        overflow-x: hidden;
+        margin-top: 60px;
+        margin-bottom: 60px;
+    }
+</style>
+
+
+
+
+
+
+
+
+<div ng-include="'views/common/header-seller.view.client.html'"></div>
+
+<div class="container-fluid">
+    <div ng-show="model.message" class="alert alert-info">
+        {{model.message}}</div>
+
+    <div>
+        <form>
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text"
+                       class="form-control"
+                       id="name"
+                       placeholder="Name"
+                       ng-class="{submitted:model.submitted1}"
+                       ng-model="model.shelf.name">
+            </div>
+
+            <br>
+            <a href="#!/lender/shelf/books/{{model.shelfId}}" class="btn btn-primary btn-block">Books</a>
+            <a ng-click="model.updateShelf(model.shelfId,model.shelf)" class="btn btn-success btn-block">Update</a>
+            <a ng-click="model.deleteShelf(model.shelfId)" class="btn btn-danger btn-block">Delete</a>
+        </form>
+    </div>
+</div>
+

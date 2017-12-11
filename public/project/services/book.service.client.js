@@ -9,7 +9,7 @@
     function bookService($http) {
         // any other function that is not tied to 'this' is private function
         // only tied to 'this' can be publicly used outside
-        this.findAllBooksForUser = findAllBooksForUser;
+        this.findAllBooksForShelf = findAllBooksForShelf;
         this.findBookById = findBookById;
         this.deleteBook = deleteBook;
         this.createBook = createBook;
@@ -21,6 +21,7 @@
         this.updateInventory = updateInventory;
         this.adminDelete = adminDelete;
         this.adminUpdate = adminUpdate;
+        this.updateBookOwner = updateBookOwner;
 
 
 
@@ -29,11 +30,17 @@
 
 
 
-
+        function updateBookOwner(bookId, userId) {
+            var url = "/api/dbproject/admin/update/owner/" + bookId;
+            return $http.put(url, userId)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
 
 
         function adminUpdate(bookId, book) {
-            var url = "/api/project/admin/book/" + bookId;
+            var url = "/api/dbproject/admin/book/" + bookId;
             return $http.put(url, book)
                 .then(function (response) {
                     return response.data;
@@ -41,7 +48,7 @@
         }
 
         function adminDelete(userId) {
-            var url = "/api/project/admin/user/"+userId;
+            var url = "/api/dbproject/admin/user/"+userId;
             return $http.get(url)
                 .then(function (response) {
                     return response.data;
@@ -50,7 +57,7 @@
 
 
         function updateInventory(bookId, quantity) {
-            var url = "/api/project/book/inventory/" + bookId;
+            var url = "/api/dbproject/book/inventory/" + bookId;
             var inv = {inventory: quantity};
             return $http.put(url, inv)
                 .then(function (response) {
@@ -61,21 +68,21 @@
 
 
         function findBookByISBN(isbn) {
-            return $http.get("/api/project/isbn/book?isbn=" + isbn)
+            return $http.get("/api/dbproject/isbn/book?isbn=" + isbn)
                 .then(function (response) {
                     return response.data;
                 });
         }
 
         function findBookByAuthor(author) {
-            return $http.get("/api/project/author/book?author=" + author)
+            return $http.get("/api/dbproject/author/book?author=" + author)
                 .then(function (response) {
                     return response.data;
                 });
         }
 
         function findBookByName(bookName) {
-            return $http.get("/api/project/name/book?bookName=" + bookName)
+            return $http.get("/api/dbproject/name/book?bookName=" + bookName)
                 .then(function (response) {
                     return response.data;
                 });
@@ -89,7 +96,7 @@
 
 
         function findAllBooks() {
-            var url = "/api/project/books";
+            var url = "/api/dbproject/books";
             return $http.get(url)
                 .then(function (response) {
                     return response.data;
@@ -99,15 +106,15 @@
 
 
         function updateBook (bookId, book) {
-            var url = "/api/project/book/" + bookId;
+            var url = "/api/dbproject/book/" + bookId;
             return $http.put(url, book)
                         .then(function (response) {
                             return response.data;
                         });
         }
 
-        function createBook(book, userId){
-            var url = "/api/project/user/"+userId+"/book";
+        function createBook(book, shelfId){
+            var url = "/api/dbproject/user/"+shelfId+"/book";
             return $http
                         .post(url, book)
                         .then(function (response) {
@@ -117,8 +124,8 @@
 
 
 
-        function deleteBook(userId, bookId) {
-            var url = "/api/project/book/" + bookId;
+        function deleteBook(shelfId, bookId) {
+            var url = "/api/dbproject/book/" + shelfId +"/" + bookId;
             return $http.delete(url)
                         .then(function (response) {
                             return response.data;
@@ -128,15 +135,15 @@
 
 
         function findBookById(bookId) {
-            var url = " /api/project/book/" + bookId;
+            var url = " /api/dbproject/book/" + bookId;
             return $http.get(url)
                         .then(function (response) {
                             return response.data;
                         });
         }
 
-        function findAllBooksForUser(userId) {
-            var url = "/api/project/user/"+userId+"/book";
+        function findAllBooksForShelf(shelfId) {
+            var url = "/api/dbproject/user/"+shelfId+"/book";
             return $http.get(url)
                 .then(function (response) {
                     return response.data;

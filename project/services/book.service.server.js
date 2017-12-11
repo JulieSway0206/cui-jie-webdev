@@ -3,25 +3,34 @@
  */
 
 var app = require('../../express');
-var bookModel = require('../models/seller/book.model.server');
+var bookModel = require('../models/lender/book.model.server');
 
 
-app.get("/api/project/user/:userId/book", findAllBooksForUser);
-app.post("/api/project/user/:userId/book", createBook);
-app.get("/api/project/book/:bookId", findBookById);
-app.put("/api/project/book/:bookId", updateBook);
-app.delete("/api/project/book/:bookId", deleteBook);
-app.get("/api/project/books", findAllBooks);
-app.get("/api/project/name/book", findBookByName);
-app.get("/api/project/author/book", findBookByAuthor);
-app.get("/api/project/isbn/book", findBookByISBN);
-app.put("/api/project/book/inventory/:bookId", updateInventory);
-app.get("/api/project/admin/user/:userId", adminDelete);
-app.put("/api/project/admin/book/:bookId", adminUpdate);
+app.get("/api/dbproject/user/:shelfId/book", findAllBooksForShelf);
+app.post("/api/dbproject/user/:shelfId/book", createBook);
+app.get("/api/dbproject/book/:bookId", findBookById);
+app.put("/api/dbproject/book/:bookId", updateBook);
+app.delete("/api/dbproject/book/:shelfId/:bookId", deleteBook);
+app.get("/api/dbproject/books", findAllBooks);
+app.get("/api/dbproject/name/book", findBookByName);
+app.get("/api/dbproject/author/book", findBookByAuthor);
+app.get("/api/dbproject/isbn/book", findBookByISBN);
+app.put("/api/dbproject/book/inventory/:bookId", updateInventory);
+app.get("/api/dbproject/admin/user/:userId", adminDelete);
+app.put("/api/dbproject/admin/book/:bookId", adminUpdate);
+app.put("/api/dbproject/admin/update/owner/:bookId", updateBookOwner);
 
 
 
-
+function updateBookOwner(req, res){
+    var bookId = req.params.bookId;
+    var userId = req.body;
+    bookModel
+        .updateBookOwner(bookId, userId)
+        .then(function (status) {
+            res.send(status);
+        });
+}
 
 function adminUpdate(req, res) {
     var bookId = req.params.bookId;
@@ -100,7 +109,7 @@ function findAllBooks(req, res) {
 function deleteBook(req, res) {
     var bookId = req.params.bookId;
     bookModel
-        .deleteBookFromUser(bookId)
+        .deleteBookFromShelf(bookId)
         .then(function (status) {
             res.json(status);
         });
@@ -130,19 +139,19 @@ function findBookById(req, res) {
 
 function createBook(req, res) {
     var book = req.body;
-    var userId = req.params.userId;
+    var shelfId = req.params.shelfId;
     bookModel
-        .createBookForUser(userId, book)
+        .createBookForShelf(shelfId, book)
         .then(function (book) {
             res.json(book);
         });
 }
 
-function findAllBooksForUser(req, res) {
+function findAllBooksForShelf(req, res) {
     var results = [];
-    var userId = req.params.userId;
+    var shelfId = req.params.shelfId;
         bookModel
-            .findAllBooksForUser(userId)
+            .findAllBooksForShelf(shelfId)
             .then(function (books) {
                 res.json(books);
             });

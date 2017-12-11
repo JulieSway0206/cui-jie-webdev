@@ -7,7 +7,7 @@ var mongoose = require('mongoose');
 var userSchema = require('./user.schema.server');
 
 var userModel = mongoose.model('UserModel', userSchema);
-// var orderModel = require('../buyer/order.model.server');
+// var orderModel = require('../borrower/order.model.server');
 
 
 
@@ -19,7 +19,8 @@ userModel.findUserByCredentials = findUserByCredentials;
 userModel.updateUser = updateUser;
 userModel.deleteUser = deleteUser;
 userModel.addBook = addBook;
-userModel.deleteBook = deleteBook;
+userModel.addShelf = addShelf;
+userModel.deleteShelf = deleteShelf;
 userModel.findUserByGoogleId = findUserByGoogleId;
 userModel.addOrder = addOrder;
 userModel.deleteOrder = deleteOrder;
@@ -28,6 +29,7 @@ userModel.followSeller = followSeller;
 userModel.unfollowSeller = unfollowSeller;
 userModel.createGoogleUser = createGoogleUser;
 userModel.userBookUpdate = userBookUpdate;
+userModel.userShelfUpdate = userShelfUpdate;
 userModel.findBuyer = findBuyer;
 userModel.findBuyerForOrderAdmin = findBuyerForOrderAdmin;
 userModel.findSellerForOrderAdmin = findSellerForOrderAdmin;
@@ -35,6 +37,13 @@ userModel.findSellerForOrderAdmin = findSellerForOrderAdmin;
 module.exports = userModel;
 
 
+
+function userShelfUpdate(newUser, oldUser, shelfId) {
+    return userModel.update({username: newUser}, {$push: {shelves: shelfId}})
+        .then(function (status) {
+            return userModel.update({username: oldUser}, {$pull: {shelves: shelfId}});
+        });
+}
 
 
 
@@ -67,18 +76,24 @@ function userBookUpdate(newUser, oldUser, bookId) {
     return userModel.update({username: newUser}, {$push: {books: bookId}})
                     .then(function (status) {
                        return userModel.update({username: oldUser}, {$pull: {books: bookId}});
-                    })
+                    });
 }
 
 
 function unfollowSeller(userId, sellerId) {
-    return userModel.update({_id: userId}, {$pull: {follows: sellerId}});
+    return userModel.update({_id: userId}, {$pull: {follows: sellerId}})
+                    .then(function (status) {
+                      return userModel.update({_id: sellerId}, {$pull: {followers: userId}});
+                    });
 }
 
 
 
 function followSeller(userId, sellerId) {
-    return userModel.update({_id: userId}, {$push: {follows: sellerId}});
+    return userModel.update({_id: userId}, {$push: {follows: sellerId}})
+                    .then(function (status) {
+                        return userModel.update({_id: sellerId}, {$push: {followers: userId}});
+                    });
 }
 
 
@@ -134,6 +149,16 @@ function deleteBook(bookId) {
         });
 }
 
+function deleteShelf(shelfId) {
+    return userModel
+        .findOne({shelves:shelfId})
+        .then(function (user) {
+            var index = user.shelves.indexOf(shelfId);
+            user.shelves.splice(index, 1);
+            return user.save();
+        });
+}
+
 
 
 function addBook(userId, bookId) {
@@ -142,6 +167,15 @@ function addBook(userId, bookId) {
         .then(function (user) {
            user.books.push(bookId);
            return user.save();
+        });
+}
+
+function addShelf(userId, shelfId) {
+    return userModel
+        .findUserById(userId)
+        .then(function (user) {
+            user.shelves.push(shelfId);
+            return user.save();
         });
 }
 

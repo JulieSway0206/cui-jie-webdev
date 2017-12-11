@@ -32,25 +32,14 @@
 
 
         function createOrder(order, userId, bookId) {
-            if (order.venmo === null || order.venmo === '' || typeof order.venmo === 'undefined') {
-                model.error1 = "Venmo is required!";
-                model.error2 = null;
-                model.submitted1 = true;
-                return;
-            }
+
             if (order.email === null || order.email === '' || typeof order.email === 'undefined') {
                 model.error1 = null;
                 model.error2 = "Email is required!";
                 model.submitted2 = true;
                 return;
             }
-            if (order.quantity === null || order.quantity === '' || typeof order.quantity === 'undefined') {
-                model.error1 = null;
-                model.error2 = null;
-                model.error3 = "Quantity is required!";
-                model.submitted3 = true;
-                return;
-            }
+
              bookService
                      .findBookById(bookId)
                      .then(function (book) {
@@ -60,11 +49,9 @@
         function buyerCreate(book) {
             var newOrder = {
                 email: order.email,
-                venmo: order.venmo,
                 message: order.message,
                 name: book.name,
-                seller: book._user.username,
-                quantity: order.quantity,
+                lender: book._user.username,
                 photo: book.photo,
                 bookId:book._id
             };
@@ -73,11 +60,9 @@
                 .then(function (buyerOder) {
                     var newOrder = {
                         email: order.email,
-                        venmo: order.venmo,
                         message: order.message,
                         name: book.name,
-                        buyer: currentUser.username,
-                        quantity: order.quantity,
+                        borrower: currentUser.username,
                         photo: book.photo,
                         bookId: book._id,
                         borderId: buyerOder._id
@@ -86,11 +71,11 @@
                         .createOrder(newOrder,book._user._id)
                         .then(function (sellerOrder) {
                             model.message = "Your buying request sent successfully!!";
-                            // $location.url('/buyer/books/'+bookId);
+                            // $location.url('/borrower/books/'+bookId);
                             orderService
                                 .updateBuyerOrder(buyerOder._id,sellerOrder._id)
                                 .then(function (status) {
-                                    $location.url('/buyer/books/'+bookId);
+                                    $location.url('/borrower/books/'+bookId);
                                 });
                         });
 

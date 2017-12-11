@@ -15,7 +15,7 @@
                     ISBN
                 </div>
                 <div class="col-sm-2 col-xs-12">
-                    Inventory
+                    Shelf
                 </div>
                 <div class="col-sm-2 col-xs-12">
                     Owner
@@ -34,9 +34,9 @@
                            class="form-control">
                 </div>
                 <div class="col-sm-2 col-xs-12">
-                    <input ng-model="model.book.inventory"
+                    <input ng-model="model.book.shelf.name"
                            class="form-control"
-                           type="number">
+                           type="text">
                 </div>
                 <div class="col-sm-2 col-xs-12">
                     <input ng-model="model.book._user.username"
@@ -63,7 +63,7 @@
                     {{book.isbn}}
                 </div>
                 <div class="col-md-2 col-xs-12" style="font-size: 15px">
-                    {{book.inventory}}
+                    {{book.shelf.name}}
                 </div>
                 <div class="col-md-2 col-xs-12" style="font-size: 15px">
                     {{book._user.username}}

@@ -1,0 +1,53 @@
+
+
+
+<div ng-include="'views/common/header-buyer.view.client.html'"></div>
+<div class="container-fluid">
+
+<div class="row" style="margin-bottom: 20px; margin-top: 10px;">
+    <div class="col-xs-12 col-sm-2">
+        <div ng-show="!model.follow">
+        <a class="btn btn-success"
+           ng-click="model.followSeller(model.userId, model.lenderId)">
+            <span class="glyphicon glyphicon-plus"></span>
+             Follow
+        </a></div>
+        <div ng-show="model.follow">
+            <a class="btn btn-info"
+               ng-click="model.unfollowSeller(model.userId, model.lenderId)">
+                <span class="glyphicon glyphicon-minus"></span>
+                Unfollow
+            </a></div>
+    </div>
+    <div class="col-xs-12 col-sm-10">
+        <div style="color: #d43f3a">
+            <h3>Lender: {{model.lender.username}}</h3>
+        </div>
+        <div style="color: deepskyblue">
+            <h3>Email: {{model.lender.email}}</h3>
+        </div>
+    </div>
+</div>
+
+
+<div>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Shelf</th>
+            <th>Books</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr  ng-repeat="shelf in model.shelves">
+            <td>{{shelf.name}}</td>
+            <td>
+                <a href="#!/borrower/books/{{book._id}}">
+                    <span class="glyphicon glyphicon-book"></span>
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</div>

@@ -1,0 +1,20 @@
+<div ng-include="'views/common/header-seller.view.client.html'"></div>
+
+
+
+<div class="container-fluid">
+
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Username</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="seller in model.sellers">
+            <td>{{seller.username}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>

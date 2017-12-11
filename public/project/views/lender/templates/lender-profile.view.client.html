@@ -1,0 +1,95 @@
+
+
+<style>
+ .btn.btn-embossed {
+color: #fff;
+background-color: lightgreen;
+font-size: 70%;
+-webkit-box-shadow: 0 3px rgba(58,87,175,.75);
+-moz-box-shadow: 0 3px rgba(58,87,175,.75);
+box-shadow: 0 3px rgba(58,87,175,.75);
+margin-bottom: 5px;
+}
+form {
+border: ridge;
+border-color: whitesmoke;
+}
+.text-center {
+     text-align: center;
+     color: #265a88;
+ }
+
+</style>
+
+<div ng-include="'views/common/header-seller.view.client.html'"></div>
+<div class="row">
+<div class="btn-group-vertical col-xs-4 col-md-2" role="group" aria-label="...">
+    <a class="btn btn-embossed" href="#!/lender/followers">
+        <span class="glyphicon glyphicon-user"></span><br>
+        Followers
+    </a>
+    <a class="btn btn-embossed" href="#!/lender/shelves">
+        <span class="glyphicon glyphicon-plus-sign"></span><br>
+      Shelves
+    </a>
+    <a class="btn btn-embossed" href="#!/lender/orders">
+        <span class="glyphicon glyphicon-shopping-cart"></span><br>
+      Orders
+    </a>
+</div>
+<div class="container-fluid col-xs-8 col-md-10">
+
+    <form>
+        <h1 class="text-center">Profile</h1>
+        <div style="padding: 5px">
+        <div class="form-group">
+        <div ng-show="model.message" class="alert alert-info">{{model.message}}</div>
+        <label for="username">Username</label>
+        <input ng-model="model.user.username"
+        type="text"
+        class="form-control"
+        id="username"
+        placeholder="jannunzi">
+        </div>
+        <div class="form-group">
+        <label for="email">Email Address</label>
+        <input ng-model="model.user.email"
+        type="email"
+        class="form-control"
+        id="email"
+        placeholder="jannunzi@gmail.com">
+        </div>
+        <label for="phone">Phone</label>
+            <input ng-model="model.user.phone"
+                   type="text"
+                   class="form-control"
+                   id="phone"
+                   placeholder="phone number">
+        </div>
+        <div class="form-group">
+        <label for="first-name">First Name</label>
+        <input ng-model="model.user.firstName"
+        type="text"
+        class="form-control"
+        id="first-name"
+        placeholder="Jose">
+        </div>
+        <div class="form-group">
+        <label for="last-name">Last Name</label>
+        <input ng-model="model.user.lastName"
+        type="text"
+        class="form-control"
+        id="last-name"
+        placeholder="Annunziato">
+            <br>
+        <a class="btn btn-block btn-success"
+            ng-click="model.updateUser(model.userId, model.user)">Update</a>
+        <a class="btn btn-block btn-danger"
+            ng-click="model.unregister()">Unregister</a>
+        <a class="btn btn-warning  btn-block"
+            ng-click="model.logout()">Logout</a>
+        </div>
+    </form>
+</div>
+</div>
+
